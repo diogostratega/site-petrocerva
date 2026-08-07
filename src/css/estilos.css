@@ -437,7 +437,7 @@ h3 {
   min-height: 3rem;
   padding: var(--espacamento-sm) var(--espacamento-lg);
   background-color: var(--cor-dourado-marca);
-  color: var(--cor-texto-sobre-destaque);
+  color: var(--cor-texto-escuro);
   font-weight: 700;
   border-radius: var(--raio-borda-sm);
   text-align: center;
