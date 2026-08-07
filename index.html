@@ -1,34 +1,56 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Petrocerva Gastrobar | Música ao vivo em Paulista, PE</title>
-<meta name="description" content="Petrocerva Gastrobar: música ao vivo todo fim de semana no Centro de Paulista, PE. Veja a programação e chame a gente no WhatsApp.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Open Graph -->
-<meta property="og:title" content="Petrocerva Gastrobar | Música ao vivo em Paulista, PE">
-<meta property="og:description" content="Programação de música ao vivo todo fim de semana no Centro de Paulista, PE. Confira quem toca e chame no WhatsApp.">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="pt_BR">
-<meta property="og:image" content="src/img/logo-petrocerva.png">
-<!-- og:url e canonical: preencher quando o site tiver domínio próprio publicado -->
-<!-- <meta property="og:url" content=""> -->
-<!-- <link rel="canonical" href=""> -->
+  <!-- Aplica o tema salvo (ou a preferência do sistema) antes da 1ª pintura,
+       para a página não "piscar" no tema errado. -->
+  <script>
+    (function () {
+      try {
+        var salvo = localStorage.getItem("tema");
+        var preferemEscuro =
+          window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var tema = salvo === "dark" || salvo === "light" ? salvo : (preferemEscuro ? "dark" : "light");
+        if (tema === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      } catch (erro) {
+        /* localStorage indisponível (ex.: navegação privada) — segue no tema claro padrão. */
+      }
+    })();
+  </script>
 
-<link rel="icon" type="image/png" href="src/img/logo-petrocerva.png">
+  <title>Petrocerva Gastrobar | Música ao vivo em Paulista, PE</title>
+  <meta name="description"
+    content="Petrocerva Gastrobar: música ao vivo todo fim de semana no Centro de Paulista, PE. Veja a programação e chame a gente no WhatsApp.">
 
-<!-- Google Fonts: Ubuntu -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Petrocerva Gastrobar | Música ao vivo em Paulista, PE">
+  <meta property="og:description"
+    content="Programação de música ao vivo todo fim de semana no Centro de Paulista, PE. Confira quem toca e chame no WhatsApp.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:image" content="src/img/logo-petrocerva.png">
+  <!-- og:url e canonical: preencher quando o site tiver domínio próprio publicado -->
+  <!-- <meta property="og:url" content=""> -->
+  <!-- <link rel="canonical" href=""> -->
 
-<link rel="stylesheet" href="src/css/reset.css">
-<link rel="stylesheet" href="src/css/estilos.css">
-<link rel="stylesheet" href="src/css/responsivo.css">
+  <link rel="icon" type="image/png" href="src/img/logo-petrocerva.png">
 
-<!-- JSON-LD -->
-<script type="application/ld+json">
+  <!-- Google Fonts: Ubuntu -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="src/css/reset.css">
+  <link rel="stylesheet" href="src/css/estilos.css">
+  <link rel="stylesheet" href="src/css/responsivo.css">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "BarOrPub",
@@ -59,363 +81,505 @@
 }
 </script>
 </head>
+
 <body>
 
-<header class="cabecalho" id="cabecalho">
-  <div class="cabecalho__conteudo">
-    <a class="cabecalho__logo" href="#inicio" aria-label="Petrocerva Gastrobar, ir para o início">
-      <picture>
-        <source srcset="src/img/logo-petrocerva.webp" type="image/webp">
-        <img src="src/img/logo-petrocerva.png" alt="Logo da Petrocerva Gastrobar" width="56" height="48" class="cabecalho__logo-imagem">
-      </picture>
-      <span class="cabecalho__logo-texto">Petrocerva<span class="cabecalho__logo-subtexto">Gastrobar</span></span>
-    </a>
-
-    <button type="button" class="cabecalho__botao-menu" id="botao-menu-mobile" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu de navegação">
-      <span class="cabecalho__icone-menu" aria-hidden="true">
-        <span></span><span></span><span></span>
-      </span>
-    </button>
-
-    <nav class="menu-principal" id="menu-principal" aria-label="Navegação principal">
-      <ul class="menu-principal__lista">
-        <li><a class="menu-principal__link" href="#inicio">Início</a></li>
-        <li><a class="menu-principal__link" href="#programacao">Programação</a></li>
-        <li><a class="menu-principal__link" href="#experiencia">Experiência</a></li>
-        <li><a class="menu-principal__link" href="#localizacao">Localização</a></li>
-      </ul>
-      <a class="menu-principal__whatsapp" href="https://wa.me/5581981782875?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Petrocerva%20e%20quero%20saber%20mais%20sobre%20a%20programa%C3%A7%C3%A3o%20deste%20fim%20de%20semana." target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
-    </nav>
+  <!-- TELA DE CARREGAMENTO -->
+  <div class="carregamento" id="tela-carregamento" role="status" aria-label="Carregando o site da Petrocerva Gastrobar">
+    <img class="carregamento__logo" src="src/img/logo-petrocerva.png" alt="" width="96" height="82">
   </div>
-</header>
 
-<main id="inicio">
-
-  <!-- HERO -->
-  <section class="hero" aria-labelledby="titulo-hero">
-    <div class="hero__conteudo">
-      <div class="hero__introducao">
-        <p class="hero__selo">Fins de semana, a partir das 18h</p>
-        <h1 class="hero__titulo" id="titulo-hero">Quem toca esse fim de semana? Veja agora e não perca.</h1>
-        <p class="hero__apoio">Programação completa por dia, no Centro de Paulista. Escolha o seu e venha curtir com sua turma.</p>
-        <a class="hero__cta" href="https://wa.me/5581981782875?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Petrocerva%20e%20quero%20saber%20mais%20sobre%20a%20programa%C3%A7%C3%A3o%20deste%20fim%20de%20semana." target="_blank" rel="noopener noreferrer">
-          Chamar no WhatsApp
-        </a>
-      </div>
-
-      <div class="carrossel-programacao" id="programacao" role="region" aria-roledescription="carrossel" aria-label="Programação da semana">
-
-        <div class="carrossel-programacao__moldura">
-          <p class="carrossel-programacao__dica-arraste">
-            <svg class="carrossel-programacao__icone-arraste" width="20" height="14" viewBox="0 0 20 14" aria-hidden="true">
-              <path d="M1 7h18M1 7l4-4M1 7l4 4M19 7l-4-4M19 7l-4 4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Deslize para escolher o dia
-          </p>
-
-          <div class="carrossel-programacao__viewport">
-            <ul class="carrossel-programacao__trilho" id="trilho-programacao">
-
-              <li class="carrossel-programacao__slide" data-dia="sexta" aria-hidden="false">
-                <article class="atracao">
-                  <img
-                    class="atracao__imagem"
-                    src="src/img/programacao-07-ago-belly-luna.png"
-                    srcset="src/img/programacao-07-ago-belly-luna.webp"
-                    alt="Cartaz do Sextou com Belly Luna, 07 de agosto às 20h30 na Petrocerva Gastrobar"
-                    width="1080" height="1440"
-                    fetchpriority="high">
-                  <div class="atracao__informacoes">
-                    <p class="atracao__data">Sexta-feira · 07 de agosto</p>
-                    <h3 class="atracao__evento">Sextou</h3>
-                    <p class="atracao__artista">Belly Luna</p>
-                    <p class="atracao__horario">20h30</p>
-                    <a class="atracao__botao-whatsapp" href="https://wa.me/5581981782875?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20show%20de%20Belly%20Luna%20na%20Petrocerva." target="_blank" rel="noopener noreferrer">Quero saber mais</a>
-                  </div>
-                </article>
-              </li>
-
-              <li class="carrossel-programacao__slide" data-dia="sabado" aria-hidden="true">
-                <article class="atracao">
-                  <img
-                    class="atracao__imagem"
-                    src="src/img/programacao-08-ago-vanelly-alves.png"
-                    srcset="src/img/programacao-08-ago-vanelly-alves.webp"
-                    alt="Cartaz do Tome a Brocha com Vanelly Alves, 08 de agosto às 20h30 na Petrocerva Gastrobar"
-                    width="1080" height="1440"
-                    loading="lazy">
-                  <div class="atracao__informacoes">
-                    <p class="atracao__data">Sábado · 08 de agosto</p>
-                    <h3 class="atracao__evento">Tome a Brocha</h3>
-                    <p class="atracao__artista">Vanelly Alves</p>
-                    <p class="atracao__horario">20h30</p>
-                    <a class="atracao__botao-whatsapp" href="https://wa.me/5581981782875?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20show%20de%20Vanelly%20Alves%20na%20Petrocerva." target="_blank" rel="noopener noreferrer">Quero saber mais</a>
-                  </div>
-                </article>
-              </li>
-
-              <li class="carrossel-programacao__slide" data-dia="domingo" aria-hidden="true">
-                <article class="atracao">
-                  <img
-                    class="atracao__imagem"
-                    src="src/img/programacao-09-ago-samba-pra-gente.png"
-                    srcset="src/img/programacao-09-ago-samba-pra-gente.webp"
-                    alt="Cartaz do Pagodinho dos Pais com o grupo Samba Pra Gente, 09 de agosto às 18h30 na Petrocerva Gastrobar"
-                    width="1080" height="1440"
-                    loading="lazy">
-                  <div class="atracao__informacoes">
-                    <p class="atracao__data">Domingo · 09 de agosto</p>
-                    <h3 class="atracao__evento">Pagodinho dos Pais</h3>
-                    <p class="atracao__artista">Samba Pra Gente</p>
-                    <p class="atracao__horario">18h30</p>
-                    <a class="atracao__botao-whatsapp" href="https://wa.me/5581981782875?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20Pagodinho%20dos%20Pais%20com%20Samba%20Pra%20Gente%20na%20Petrocerva." target="_blank" rel="noopener noreferrer">Quero saber mais</a>
-                  </div>
-                </article>
-              </li>
-
-            </ul>
-          </div>
-
-          <div class="carrossel-programacao__progresso" aria-hidden="true">
-            <span class="carrossel-programacao__progresso-barra" id="barra-progresso-autoplay"></span>
-          </div>
-
-          <div class="carrossel-programacao__navegacao">
-            <button type="button" class="carrossel-programacao__botao-seta" id="botao-atracao-anterior" aria-label="Ver atração anterior">
-              <svg width="10" height="16" viewBox="0 0 10 16" aria-hidden="true"><path d="M9 1 1.5 8 9 15" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-
-            <div class="carrossel-programacao__botoes-dias" role="tablist" aria-label="Escolher dia da programação">
-              <button type="button" class="carrossel-programacao__botao-dia" id="botao-dia-sexta" data-dia="sexta" role="tab" aria-selected="true">Sexta</button>
-              <button type="button" class="carrossel-programacao__botao-dia" id="botao-dia-sabado" data-dia="sabado" role="tab" aria-selected="false">Sábado</button>
-              <button type="button" class="carrossel-programacao__botao-dia" id="botao-dia-domingo" data-dia="domingo" role="tab" aria-selected="false">Domingo</button>
-            </div>
-
-            <button type="button" class="carrossel-programacao__botao-seta" id="botao-proxima-atracao" aria-label="Ver próxima atração">
-              <svg width="10" height="16" viewBox="0 0 10 16" aria-hidden="true"><path d="M1 1 8.5 8 1 15" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-          </div>
-
-          <button type="button" class="carrossel-programacao__botao-controle-automatico" id="botao-controle-automatico" aria-label="Pausar carrossel">
-            <svg class="icone-pausar" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><rect x="2" y="1" width="3.5" height="12" fill="currentColor"/><rect x="8.5" y="1" width="3.5" height="12" fill="currentColor"/></svg>
-            <svg class="icone-retomar" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" hidden><path d="M2 1 12.5 7 2 13Z" fill="currentColor"/></svg>
-            <span class="carrossel-programacao__texto-controle">Pausar</span>
-          </button>
-
-          <p class="carrossel-programacao__anuncio" id="anuncio-carrossel" role="status" aria-live="polite"></p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXPERIÊNCIA -->
-  <section class="experiencia" id="experiencia" aria-labelledby="titulo-experiencia">
-    <div class="experiencia__conteudo">
-      <p class="experiencia__eyebrow">A experiência</p>
-      <h2 class="experiencia__titulo" id="titulo-experiencia">Por que vir para a Petrocerva</h2>
-
-      <div class="experiencia__grade">
-        <article class="experiencia__item">
-          <span class="experiencia__icone" aria-hidden="true">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 18V5l11-2v13"/>
-              <circle cx="6" cy="18" r="3"/>
-              <circle cx="17" cy="16" r="3"/>
-            </svg>
-          </span>
-          <h3 class="experiencia__item-titulo">Música ao vivo</h3>
-          <p class="experiencia__item-texto">Programação com cantores, grupos e diferentes ritmos nos fins de semana.</p>
-        </article>
-
-        <article class="experiencia__item">
-          <span class="experiencia__icone" aria-hidden="true">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="9" cy="8" r="3.25"/>
-              <path d="M3.5 20c0-3.6 2.5-6 5.5-6s5.5 2.4 5.5 6"/>
-              <path d="M16 8.5a3 3 0 1 1 1.2 5.75"/>
-              <path d="M17.5 14.5c2.4.4 3.9 2.4 3.9 5.5"/>
-            </svg>
-          </span>
-          <h3 class="experiencia__item-titulo">Seu encontro de fim de semana</h3>
-          <p class="experiencia__item-texto">Um lugar para reunir os amigos e aproveitar a noite.</p>
-        </article>
-
-        <article class="experiencia__item">
-          <span class="experiencia__icone" aria-hidden="true">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 3v6a3 3 0 0 0 3 3v9"/>
-              <path d="M5 3v6M9 3v6"/>
-              <path d="M17 3c-1.7 0-3 1.6-3 4.5S15.3 12 17 12s3-1.6 3-4.5S18.7 3 17 3Z"/>
-              <path d="M17 12v9"/>
-            </svg>
-          </span>
-          <h3 class="experiencia__item-titulo">Gastrobar</h3>
-          <p class="experiencia__item-texto">Bebidas e gastronomia acompanhando a programação musical.</p>
-        </article>
-
-        <article class="experiencia__item">
-          <span class="experiencia__icone" aria-hidden="true">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21Z"/>
-              <circle cx="12" cy="9.5" r="2.25"/>
-            </svg>
-          </span>
-          <h3 class="experiencia__item-titulo">No Centro de Paulista</h3>
-          <p class="experiencia__item-texto">Rua Veneza, 1039, próximo ao SENAC.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- GALERIA -->
-  <section class="galeria" aria-labelledby="titulo-galeria">
-    <div class="galeria__conteudo">
-      <p class="galeria__eyebrow">O ambiente</p>
-      <h2 class="galeria__titulo" id="titulo-galeria">Um clima para curtir com a turma</h2>
-
-      <div class="galeria__grade">
-        <div class="galeria__item">
-          <img class="galeria__imagem" src="src/img/galeria-ambiente-01.jpg" alt="Salão da Petrocerva Gastrobar movimentado, com clientes reunidos à noite" loading="lazy" width="800" height="800">
-        </div>
-        <div class="galeria__item">
-          <img class="galeria__imagem" src="src/img/galeria-ambiente-02.jpg" alt="Clientes da Petrocerva Gastrobar reunidos em noite de jogo da seleção brasileira" loading="lazy" width="800" height="800">
-        </div>
-        <div class="galeria__item">
-          <img class="galeria__imagem" src="src/img/galeria-mesas-01.jpg" alt="Mesas e cadeiras de madeira na área externa da Petrocerva Gastrobar" loading="lazy" width="800" height="800">
-        </div>
-        <div class="galeria__item">
-          <img class="galeria__imagem" src="src/img/galeria-salao-01.jpg" alt="Salão interno da Petrocerva Gastrobar com cadeiras, geladeiras de chopp e decoração" loading="lazy" width="800" height="800">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROVA SOCIAL -->
-  <section class="depoimentos" aria-labelledby="titulo-depoimentos">
-    <div class="depoimentos__conteudo">
-      <p class="depoimentos__eyebrow">Quem já foi</p>
-      <h2 class="depoimentos__titulo" id="titulo-depoimentos">O que dizem sobre a Petrocerva</h2>
-
-      <a class="depoimentos__resumo" href="https://www.google.com/maps/place/Petrocerva/@-7.9466832,-34.8894375,19.5z/data=!4m15!1m8!3m7!1s0x7ab1641926d793f:0x3eb93e18e095bacb!2sR.+Veneza,+1039+B+-+Centro,+Paulista+-+PE,+53401-000!3b1!8m2!3d-7.9466507!4d-34.889269!16s%2Fg%2F11nnkp_8tt!3m5!1s0x7ab17fdddb079f1:0x5dec79b61b96c19f!8m2!3d-7.9468367!4d-34.8889138!16s%2Fg%2F11s3mlb9x2?entry=ttu&g_ep=EgoyMDI2MDgwNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">
-        <span class="depoimentos__resumo-nota">4,3</span>
-        <span class="depoimentos__resumo-estrelas" aria-label="4,3 de 5 estrelas">
-          <span class="depoimentos__resumo-estrelas-fundo" aria-hidden="true">★★★★★</span>
-          <span class="depoimentos__resumo-estrelas-preenchido" aria-hidden="true" style="width: 86%">★★★★★</span>
-        </span>
-        <span class="depoimentos__resumo-total">26 avaliações no Google</span>
+  <header class="cabecalho" id="cabecalho">
+    <div class="cabecalho__conteudo">
+      <a class="cabecalho__logo" href="#inicio" aria-label="Petrocerva Gastrobar, ir para o início">
+        <picture>
+          <source srcset="src/img/logo-petrocerva.webp" type="image/webp">
+          <img src="src/img/logo-petrocerva.png" alt="Logo do Petrocerva Gastrobar" width="56" height="48"
+            class="cabecalho__logo-imagem">
+        </picture>
+        <span class="cabecalho__logo-texto">PETROCERVA<span class="cabecalho__logo-subtexto">Gastrobar</span></span>
       </a>
 
-      <div class="depoimentos__grade">
-        <blockquote class="depoimentos__item">
-          <div class="depoimentos__cabecalho">
-            <span class="depoimentos__avatar" aria-hidden="true">T</span>
-            <div class="depoimentos__info">
-              <p class="depoimentos__nome">Thereza Magno</p>
-              <span class="depoimentos__estrelas" aria-label="5 de 5 estrelas">★★★★★</span>
-            </div>
-          </div>
-          <p class="depoimentos__texto">Ambiente maravilhoso, família, comida saborosa com sabor bebida gelada, atendimento maravilhoso, super indico 😊 vou sempre porque é um ambiente família, tranquilo. Daria 10 estrela 🌟 se tivesse essa opção.</p>
-        </blockquote>
-        <blockquote class="depoimentos__item">
-          <div class="depoimentos__cabecalho">
-            <span class="depoimentos__avatar" aria-hidden="true">P</span>
-            <div class="depoimentos__info">
-              <p class="depoimentos__nome">Poliana Silva</p>
-              <span class="depoimentos__estrelas" aria-label="5 de 5 estrelas">★★★★★</span>
-            </div>
-          </div>
-          <p class="depoimentos__texto">Qualidade no atendimento foi que mais me chamou a atenção. Garçons super atenciosos e sem falar na atração da noite. Banda muito boa e o som ambiente para você conversar com seus amigos. Voltarei sempre!</p>
-        </blockquote>
-        <blockquote class="depoimentos__item">
-          <div class="depoimentos__cabecalho">
-            <span class="depoimentos__avatar" aria-hidden="true">I</span>
-            <div class="depoimentos__info">
-              <p class="depoimentos__nome">Ingrid Vitoria</p>
-              <span class="depoimentos__estrelas" aria-label="5 de 5 estrelas">★★★★★</span>
-            </div>
-          </div>
-          <p class="depoimentos__texto">Foi no sábado amei o atendimento, a comida excelente e ambiente muito bom, o som é excelente da pra escutar, curti e dança a vontade, recomendo muito 🤩💕💕</p>
-        </blockquote>
-      </div>
+      <button type="button" class="cabecalho__botao-tema" id="botao-tema" aria-label="Ativar modo escuro">
+        <svg class="icone-lua" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
+        </svg>
+        <svg class="icone-sol" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden>
+          <circle cx="12" cy="12" r="4" />
+          <path
+            d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+        </svg>
+      </button>
+
+      <button type="button" class="cabecalho__botao-menu" id="botao-menu-mobile" aria-expanded="false"
+        aria-controls="menu-principal" aria-label="Abrir menu de navegação">
+        <span class="cabecalho__icone-menu" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+      </button>
+
+      <nav class="menu-principal" id="menu-principal" aria-label="Navegação principal">
+        <ul class="menu-principal__lista">
+          <li><a class="menu-principal__link" href="#inicio">Início</a></li>
+          <li><a class="menu-principal__link" href="#programacao">Programação</a></li>
+          <li><a class="menu-principal__link" href="#cardapio">Cardápio</a></li>
+          <li><a class="menu-principal__link" href="#localizacao">Localização</a></li>
+        </ul>
+        <a class="menu-principal__whatsapp"
+          href="https://wa.me/5581981782875?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Petrocerva%20e%20quero%20saber%20mais%20sobre%20a%20programa%C3%A7%C3%A3o%20deste%20fim%20de%20semana."
+          target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
+      </nav>
     </div>
-  </section>
+  </header>
 
-  <!-- SOBRE -->
-  <section class="sobre" id="sobre" aria-labelledby="titulo-sobre">
-    <div class="sobre__conteudo">
-      <p class="sobre__eyebrow">Desde 2022</p>
-      <h2 class="sobre__titulo" id="titulo-sobre">Sobre a Petrocerva</h2>
-      <p class="sobre__texto">A Petrocerva é um gastrobar no Centro de Paulista que reúne música ao vivo, artistas da região e diferentes ritmos nos fins de semana. Um lugar para encontrar os amigos, curtir a noite e acompanhar uma programação que muda toda semana.</p>
-    </div>
-  </section>
+  <main id="inicio">
 
-  <!-- LOCALIZAÇÃO -->
-  <section class="localizacao" id="localizacao" aria-labelledby="titulo-localizacao">
-    <div class="localizacao__conteudo">
-      <p class="localizacao__eyebrow">Como chegar</p>
-      <h2 class="localizacao__titulo" id="titulo-localizacao">Localização e funcionamento</h2>
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="titulo-hero">
+      <div class="hero__conteudo">
+        <div class="hero__introducao">
+          <p class="hero__selo">MÚSICA AO VIVO | TODO FIM DE SEMANA</p>
+          <h1 class="hero__titulo" id="titulo-hero">QUEM TOCA ESSE FIM DE SEMANA? VEJA AGORA E NÃO PERCA!</h1>
+          <p class="hero__apoio" hidden>Programação completa por dia, no Centro de Paulista. Escolha o seu e venha
+            curtir com sua turma.</p>
+          <a class="hero__cta"
+            href="https://wa.me/5581981782875?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Petrocerva%20e%20quero%20saber%20mais%20sobre%20a%20programa%C3%A7%C3%A3o%20deste%20fim%20de%20semana."
+            target="_blank" rel="noopener noreferrer" hidden>
+            Chamar no WhatsApp
+          </a>
+        </div>
 
-      <div class="localizacao__grade">
-        <div class="localizacao__informacoes">
-          <ul class="localizacao__lista">
-            <li>
-              <span class="localizacao__rotulo">Endereço</span>
-              Rua Veneza, 1039, Centro, Paulista, PE, próximo ao SENAC
-            </li>
-            <li>
-              <span class="localizacao__rotulo">Funcionamento</span>
-              Fins de semana, a partir das 18h
-            </li>
-            <li>
-              <span class="localizacao__rotulo">Telefone</span>
-              (81) 98178-2875
-            </li>
-            <li>
-              <span class="localizacao__rotulo">Instagram</span>
-              <a href="https://www.instagram.com/petrocerva_/" target="_blank" rel="noopener noreferrer">@petrocerva_</a>
-            </li>
-          </ul>
+        <div class="carrossel-programacao" id="programacao" role="region" aria-roledescription="carrossel"
+          aria-label="Programação da semana">
 
-          <div class="localizacao__botoes">
-            <a class="localizacao__botao localizacao__botao--mapa" href="https://www.google.com/maps/place/Petrocerva/@-7.9466832,-34.8894375,19.5z/data=!4m15!1m8!3m7!1s0x7ab1641926d793f:0x3eb93e18e095bacb!2sR.+Veneza,+1039+B+-+Centro,+Paulista+-+PE,+53401-000!3b1!8m2!3d-7.9466507!4d-34.889269!16s%2Fg%2F11nnkp_8tt!3m5!1s0x7ab17fdddb079f1:0x5dec79b61b96c19f!8m2!3d-7.9468367!4d-34.8889138!16s%2Fg%2F11s3mlb9x2?entry=ttu&g_ep=EgoyMDI2MDgwNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">Abrir no Google Maps</a>
-            <a class="localizacao__botao localizacao__botao--whatsapp" href="https://wa.me/5581981782875?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Petrocerva%20e%20quero%20saber%20mais%20sobre%20a%20programa%C3%A7%C3%A3o%20deste%20fim%20de%20semana." target="_blank" rel="noopener noreferrer">Tirar dúvida pelo WhatsApp</a>
+          <div class="carrossel-programacao__moldura">
+            <div class="carrossel-programacao__selecao-dia">
+              <p class="carrossel-programacao__legenda-dia" id="legenda-escolha-dia">ESCOLHA O DIA</p>
+              <div class="carrossel-programacao__botoes-dias" role="tablist" aria-label="Escolher dia da programação"
+                aria-labelledby="legenda-escolha-dia">
+                <button type="button" class="carrossel-programacao__botao-dia" id="botao-dia-sexta" data-dia="sexta"
+                  role="tab" aria-selected="true">Sexta</button>
+                <button type="button" class="carrossel-programacao__botao-dia" id="botao-dia-sabado" data-dia="sabado"
+                  role="tab" aria-selected="false">Sábado</button>
+                <button type="button" class="carrossel-programacao__botao-dia" id="botao-dia-domingo" data-dia="domingo"
+                  role="tab" aria-selected="false">Domingo</button>
+              </div>
+            </div>
+
+            <div class="carrossel-programacao__viewport">
+              <ul class="carrossel-programacao__trilho" id="trilho-programacao">
+
+                <li class="carrossel-programacao__slide" data-dia="sexta" aria-hidden="false">
+                  <article class="atracao">
+                    <div class="atracao__moldura-imagem">
+                      <img class="atracao__imagem" src="src/img/programacao-07-ago-belly-luna.png"
+                        srcset="src/img/programacao-07-ago-belly-luna.webp"
+                        alt="Cartaz do Sextou com Belly Luna, 07 de agosto às 20h30 no Petrocerva Gastrobar"
+                        width="1080" height="1440" fetchpriority="high">
+
+                      <button type="button"
+                        class="carrossel-programacao__botao-seta carrossel-programacao__botao-seta--anterior carrossel-programacao__botao-seta--oculta js-seta-anterior"
+                        aria-label="Ver atração anterior">
+                        <svg width="10" height="16" viewBox="0 0 10 16" aria-hidden="true">
+                          <path d="M9 1 1.5 8 9 15" stroke="currentColor" stroke-width="2" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                      </button>
+
+                      <button type="button"
+                        class="carrossel-programacao__botao-seta carrossel-programacao__botao-seta--proxima js-seta-proxima"
+                        aria-label="Ver próxima atração">
+                        <svg width="10" height="16" viewBox="0 0 10 16" aria-hidden="true">
+                          <path d="M1 1 8.5 8 1 15" stroke="currentColor" stroke-width="2" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div class="atracao__informacoes">
+                      <p class="atracao__data">Sexta-feira · 07 de agosto</p>
+                      <h3 class="atracao__evento">Sextou</h3>
+                      <p class="atracao__artista">Belly Luna</p>
+                      <p class="atracao__horario">20h30</p>
+                      <a class="atracao__botao-whatsapp"
+                        href="https://wa.me/5581981782875?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20show%20de%20Belly%20Luna%20na%20Petrocerva."
+                        target="_blank" rel="noopener noreferrer">Mais Informações</a>
+                    </div>
+                  </article>
+                </li>
+
+                <li class="carrossel-programacao__slide" data-dia="sabado" aria-hidden="true">
+                  <article class="atracao">
+                    <div class="atracao__moldura-imagem">
+                      <img class="atracao__imagem" src="src/img/programacao-08-ago-vanelly-alves.png"
+                        srcset="src/img/programacao-08-ago-vanelly-alves.webp"
+                        alt="Cartaz do Tome Arrocha com Vanelly Alves, 08 de agosto às 20h30 no Petrocerva Gastrobar"
+                        width="1080" height="1440" loading="lazy">
+
+                      <button type="button"
+                        class="carrossel-programacao__botao-seta carrossel-programacao__botao-seta--anterior js-seta-anterior"
+                        aria-label="Ver atração anterior">
+                        <svg width="10" height="16" viewBox="0 0 10 16" aria-hidden="true">
+                          <path d="M9 1 1.5 8 9 15" stroke="currentColor" stroke-width="2" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                      </button>
+
+                      <button type="button"
+                        class="carrossel-programacao__botao-seta carrossel-programacao__botao-seta--proxima js-seta-proxima"
+                        aria-label="Ver próxima atração">
+                        <svg width="10" height="16" viewBox="0 0 10 16" aria-hidden="true">
+                          <path d="M1 1 8.5 8 1 15" stroke="currentColor" stroke-width="2" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div class="atracao__informacoes">
+                      <p class="atracao__data">Sábado · 08 de agosto</p>
+                      <h3 class="atracao__evento">Tome Arrocha</h3>
+                      <p class="atracao__artista">Vanelly Alves</p>
+                      <p class="atracao__horario">20h30</p>
+                      <a class="atracao__botao-whatsapp"
+                        href="https://wa.me/5581981782875?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20show%20de%20Vanelly%20Alves%20na%20Petrocerva."
+                        target="_blank" rel="noopener noreferrer">Mais Informações</a>
+                    </div>
+                  </article>
+                </li>
+
+                <li class="carrossel-programacao__slide" data-dia="domingo" aria-hidden="true">
+                  <article class="atracao">
+                    <div class="atracao__moldura-imagem">
+                      <img class="atracao__imagem" src="src/img/programacao-09-ago-samba-pra-gente.png"
+                        srcset="src/img/programacao-09-ago-samba-pra-gente.webp"
+                        alt="Cartaz do Pagodinho dos Pais com o grupo Samba Pra Gente, 09 de agosto às 18h30 no Petrocerva Gastrobar"
+                        width="1080" height="1440" loading="lazy">
+
+                      <button type="button"
+                        class="carrossel-programacao__botao-seta carrossel-programacao__botao-seta--anterior js-seta-anterior"
+                        aria-label="Ver atração anterior">
+                        <svg width="10" height="16" viewBox="0 0 10 16" aria-hidden="true">
+                          <path d="M9 1 1.5 8 9 15" stroke="currentColor" stroke-width="2" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                      </button>
+
+                      <button type="button"
+                        class="carrossel-programacao__botao-seta carrossel-programacao__botao-seta--proxima carrossel-programacao__botao-seta--oculta js-seta-proxima"
+                        aria-label="Ver próxima atração">
+                        <svg width="10" height="16" viewBox="0 0 10 16" aria-hidden="true">
+                          <path d="M1 1 8.5 8 1 15" stroke="currentColor" stroke-width="2" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div class="atracao__informacoes">
+                      <p class="atracao__data">Domingo · 09 de agosto</p>
+                      <h3 class="atracao__evento">Pagodinho dos Pais</h3>
+                      <p class="atracao__artista">Samba Pra Gente</p>
+                      <p class="atracao__horario">18h30</p>
+                      <a class="atracao__botao-whatsapp"
+                        href="https://wa.me/5581981782875?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20Pagodinho%20dos%20Pais%20com%20Samba%20Pra%20Gente%20na%20Petrocerva."
+                        target="_blank" rel="noopener noreferrer">Mais Informações</a>
+                    </div>
+                  </article>
+                </li>
+
+              </ul>
+            </div>
+
+            <div class="carrossel-programacao__progresso" aria-hidden="true">
+              <span class="carrossel-programacao__progresso-barra" id="barra-progresso-autoplay"></span>
+            </div>
+
+            <p class="carrossel-programacao__anuncio" id="anuncio-carrossel" role="status" aria-live="polite"></p>
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- EXPERIÊNCIA -->
+    <section class="experiencia" id="experiencia" aria-labelledby="titulo-experiencia">
+      <div class="experiencia__conteudo">
+        <p class="experiencia__eyebrow">A experiência</p>
+        <h2 class="experiencia__titulo" id="titulo-experiencia">POR QUE VIR PARA O PETROCERVA?</h2>
+
+        <div class="experiencia__grade">
+          <a class="experiencia__item" href="#programacao">
+            <span class="experiencia__icone" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 18V5l11-2v13" />
+                <circle cx="6" cy="18" r="3" />
+                <circle cx="17" cy="16" r="3" />
+              </svg>
+            </span>
+            <h3 class="experiencia__item-titulo">Música Ao Vivo</h3>
+            <p class="experiencia__item-texto">Programação com cantores, grupos e diferentes ritmos nos fins de semana
+            </p>
+          </a>
+
+          <a class="experiencia__item" href="#ambiente">
+            <span class="experiencia__icone" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="8" r="3.25" />
+                <path d="M3.5 20c0-3.6 2.5-6 5.5-6s5.5 2.4 5.5 6" />
+                <path d="M16 8.5a3 3 0 1 1 1.2 5.75" />
+                <path d="M17.5 14.5c2.4.4 3.9 2.4 3.9 5.5" />
+              </svg>
+            </span>
+            <h3 class="experiencia__item-titulo">Seu Encontro de Fim de Semana</h3>
+            <p class="experiencia__item-texto">Um lugar para reunir os amigos e aproveitar a noite</p>
+          </a>
+
+          <a class="experiencia__item" href="#cardapio">
+            <span class="experiencia__icone" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 3v6a3 3 0 0 0 3 3v9" />
+                <path d="M5 3v6M9 3v6" />
+                <path d="M17 3c-1.7 0-3 1.6-3 4.5S15.3 12 17 12s3-1.6 3-4.5S18.7 3 17 3Z" />
+                <path d="M17 12v9" />
+              </svg>
+            </span>
+            <h3 class="experiencia__item-titulo">Gastrobar</h3>
+            <p class="experiencia__item-texto">Bebidas e gastronomia acompanhando a programação musical</p>
+          </a>
+
+          <a class="experiencia__item" href="#localizacao">
+            <span class="experiencia__icone" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21Z" />
+                <circle cx="12" cy="9.5" r="2.25" />
+              </svg>
+            </span>
+            <h3 class="experiencia__item-titulo">No Centro de Paulista</h3>
+            <p class="experiencia__item-texto">Rua Veneza, 1039. Próximo ao SENAC</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERIA -->
+    <section class="galeria" id="ambiente" aria-labelledby="titulo-galeria">
+      <div class="galeria__conteudo">
+        <p class="galeria__eyebrow">O ambiente</p>
+        <h2 class="galeria__titulo" id="titulo-galeria">Um Clima para Curtir com a Turma</h2>
+
+        <div class="galeria__grade">
+          <div class="galeria__item">
+            <img class="galeria__imagem" src="src/img/galeria-ambiente-01.jpg"
+              alt="Salão do Petrocerva Gastrobar movimentado, com clientes reunidos à noite" loading="lazy" width="800"
+              height="800">
+          </div>
+          <div class="galeria__item">
+            <img class="galeria__imagem" src="src/img/galeria-ambiente-02.jpg"
+              alt="Clientes do Petrocerva Gastrobar reunidos em noite de jogo da seleção brasileira" loading="lazy"
+              width="800" height="800">
+          </div>
+          <div class="galeria__item">
+            <img class="galeria__imagem" src="src/img/galeria-mesas-01.jpg"
+              alt="Mesas e cadeiras de madeira na área externa do Petrocerva Gastrobar" loading="lazy" width="800"
+              height="800">
+          </div>
+          <div class="galeria__item">
+            <img class="galeria__imagem" src="src/img/galeria-salao-01.jpg"
+              alt="Salão interno do Petrocerva Gastrobar com cadeiras, geladeiras de chopp e decoração" loading="lazy"
+              width="800" height="800">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARDÁPIO (o cardápio completo ainda será criado em página separada) -->
+    <section class="cardapio" aria-labelledby="titulo-cardapio">
+      <div class="cardapio__conteudo" id="cardapio">
+        <p class="cardapio__eyebrow">O cardápio</p>
+        <h2 class="cardapio__titulo" id="titulo-cardapio">Sabores da Casa</h2>
+        <p class="cardapio__texto">Petiscos e drinks para acompanhar a noite!</p>
+
+        <div class="cardapio__grade">
+          <div class="cardapio__item">
+            <img class="cardapio__imagem" src="src/img/cardapio-drink-01.jpg"
+              alt="Drink autoral do Petrocerva Gastrobar" loading="lazy" width="800" height="800">
+          </div>
+          <div class="cardapio__item">
+            <img class="cardapio__imagem" src="src/img/cardapio-prato-02.jpg"
+              alt="Petisco do cardápio do Petrocerva Gastrobar" loading="lazy" width="800" height="800">
+          </div>
+          <div class="cardapio__item">
+            <img class="cardapio__imagem" src="src/img/cardapio-prato-04.jpg"
+              alt="Petisco do cardápio do Petrocerva Gastrobar" loading="lazy" width="800" height="800">
+          </div>
+          <div class="cardapio__item">
+            <img class="cardapio__imagem" src="src/img/cardapio-prato-01.jpg"
+              alt="Petisco do cardápio do Petrocerva Gastrobar" loading="lazy" width="800" height="800">
+          </div>
+        </div>
+
+        <!-- Placeholder: o cardápio completo será uma página separada, criada futuramente. -->
+        <a class="cardapio__botao" href="#cardapio">Ver Cardápio</a>
+      </div>
+    </section>
+
+    <!-- PROVA SOCIAL -->
+    <section class="depoimentos" aria-labelledby="titulo-depoimentos">
+      <div class="depoimentos__conteudo">
+        <p class="depoimentos__eyebrow">Quem já foi, Recomenda!</p>
+        <!-- <h2 class="depoimentos__titulo" id="titulo-depoimentos">O Que Falam Sobre o Petrocerva:</h2> -->
+
+        <a class="depoimentos__resumo"
+          href="https://www.google.com/maps/place/Petrocerva/@-7.9466832,-34.8894375,19.5z/data=!4m15!1m8!3m7!1s0x7ab1641926d793f:0x3eb93e18e095bacb!2sR.+Veneza,+1039+B+-+Centro,+Paulista+-+PE,+53401-000!3b1!8m2!3d-7.9466507!4d-34.889269!16s%2Fg%2F11nnkp_8tt!3m5!1s0x7ab17fdddb079f1:0x5dec79b61b96c19f!8m2!3d-7.9468367!4d-34.8889138!16s%2Fg%2F11s3mlb9x2?entry=ttu&g_ep=EgoyMDI2MDgwNC4wIKXMDSoASAFQAw%3D%3D"
+          target="_blank" rel="noopener noreferrer">
+          <span class="depoimentos__resumo-nota">4,3</span>
+          <span class="depoimentos__resumo-estrelas" aria-label="4,3 de 5 estrelas">
+            <span class="depoimentos__resumo-estrelas-fundo" aria-hidden="true">★★★★★</span>
+            <span class="depoimentos__resumo-estrelas-preenchido" aria-hidden="true" style="width: 86%">★★★★★</span>
+          </span>
+          <span class="depoimentos__resumo-total">26 avaliações no Google</span>
+        </a>
+
+        <div class="depoimentos__grade">
+          <blockquote class="depoimentos__item">
+            <div class="depoimentos__cabecalho">
+              <span class="depoimentos__avatar" aria-hidden="true">T</span>
+              <div class="depoimentos__info">
+                <p class="depoimentos__nome">Thereza Magno</p>
+                <span class="depoimentos__estrelas" aria-label="5 de 5 estrelas">★★★★★</span>
+              </div>
+            </div>
+            <p class="depoimentos__texto">Ambiente maravilhoso, família, comida saborosa com sabor bebida gelada,
+              atendimento maravilhoso, super indico 😊 vou sempre porque é um ambiente família, tranquilo. Daria 10
+              estrela 🌟 se tivesse essa opção.</p>
+          </blockquote>
+          <blockquote class="depoimentos__item">
+            <div class="depoimentos__cabecalho">
+              <span class="depoimentos__avatar" aria-hidden="true">P</span>
+              <div class="depoimentos__info">
+                <p class="depoimentos__nome">Poliana Silva</p>
+                <span class="depoimentos__estrelas" aria-label="5 de 5 estrelas">★★★★★</span>
+              </div>
+            </div>
+            <p class="depoimentos__texto">Qualidade no atendimento foi que mais me chamou a atenção. Garçons super
+              atenciosos e sem falar na atração da noite. Banda muito boa e o som ambiente para você conversar com seus
+              amigos. Voltarei sempre!</p>
+          </blockquote>
+          <blockquote class="depoimentos__item">
+            <div class="depoimentos__cabecalho">
+              <span class="depoimentos__avatar" aria-hidden="true">I</span>
+              <div class="depoimentos__info">
+                <p class="depoimentos__nome">Ingrid Vitoria</p>
+                <span class="depoimentos__estrelas" aria-label="5 de 5 estrelas">★★★★★</span>
+              </div>
+            </div>
+            <p class="depoimentos__texto">Foi no sábado amei o atendimento, a comida excelente e ambiente muito bom, o
+              som é excelente da pra escutar, curti e dança a vontade, recomendo muito 🤩💕💕</p>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section class="sobre" id="sobre" aria-labelledby="titulo-sobre">
+      <div class="sobre__conteudo">
+        <p class="sobre__eyebrow">Desde 2022</p>
+        <h2 class="sobre__titulo" id="titulo-sobre">Sobre o Petrocerva</h2>
+        <p class="sobre__texto">o Petrocerva é um gastrobar no Centro de Paulista que reúne música ao vivo, artistas da
+          região e diferentes ritmos nos fins de semana. Um lugar para encontrar os amigos, curtir a noite e acompanhar
+          uma programação que muda toda semana.</p>
+      </div>
+    </section>
+
+    <!-- LOCALIZAÇÃO -->
+    <section class="localizacao" id="localizacao" aria-labelledby="titulo-localizacao">
+      <div class="localizacao__conteudo">
+        <p class="localizacao__eyebrow">Como chegar</p>
+        <h2 class="localizacao__titulo" id="titulo-localizacao">Localização e funcionamento</h2>
+
+        <div class="localizacao__grade">
+          <div class="localizacao__informacoes">
+            <ul class="localizacao__lista">
+              <li>
+                <span class="localizacao__rotulo">Endereço</span>
+                Rua Veneza, 1039 - Centro, Paulista-PE. Próximo ao SENAC
+              </li>
+              <li>
+                <span class="localizacao__rotulo">Funcionamento</span>
+                Fins de semana, a partir das 18h
+              </li>
+              <li>
+                <span class="localizacao__rotulo">Telefone</span>
+                (81) 98178-2875
+              </li>
+              <li>
+                <span class="localizacao__rotulo">Instagram</span>
+                <a href="https://www.instagram.com/petrocerva_/" target="_blank"
+                  rel="noopener noreferrer">@petrocerva_</a>
+              </li>
+            </ul>
+
+            <div class="localizacao__botoes">
+              <a class="localizacao__botao localizacao__botao--mapa"
+                href="https://www.google.com/maps/place/Petrocerva/@-7.9466832,-34.8894375,19.5z/data=!4m15!1m8!3m7!1s0x7ab1641926d793f:0x3eb93e18e095bacb!2sR.+Veneza,+1039+B+-+Centro,+Paulista+-+PE,+53401-000!3b1!8m2!3d-7.9466507!4d-34.889269!16s%2Fg%2F11nnkp_8tt!3m5!1s0x7ab17fdddb079f1:0x5dec79b61b96c19f!8m2!3d-7.9468367!4d-34.8889138!16s%2Fg%2F11s3mlb9x2?entry=ttu&g_ep=EgoyMDI2MDgwNC4wIKXMDSoASAFQAw%3D%3D"
+                target="_blank" rel="noopener noreferrer">Abrir no Google Maps</a>
+              <a class="localizacao__botao localizacao__botao--whatsapp"
+                href="https://wa.me/5581981782875?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Petrocerva%20e%20quero%20saber%20mais%20sobre%20a%20programa%C3%A7%C3%A3o%20deste%20fim%20de%20semana."
+                target="_blank" rel="noopener noreferrer">Tirar dúvida pelo WhatsApp</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer class="rodape">
+    <div class="rodape__conteudo">
+      <div class="rodape__marca">
+        <p class="rodape__nome">Petrocerva Gastrobar</p>
+        <p class="rodape__endereco">Rua Veneza, 1039 - Centro, Paulista-PE</p>
+      </div>
+
+      <nav class="rodape__navegacao" aria-label="Navegação do rodapé">
+        <a href="#inicio">Início</a>
+        <a href="#programacao">Programação</a>
+        <a href="#cardapio">Cardápio</a>
+        <a href="#localizacao">Localização</a>
+      </nav>
+
+      <div class="rodape__contato">
+        <a href="https://wa.me/5581981782875" target="_blank" rel="noopener noreferrer">WhatsApp: (81) 98178-2875</a>
+        <a href="https://www.instagram.com/petrocerva_/" target="_blank" rel="noopener noreferrer">@petrocerva_</a>
+      </div>
+
+      <p class="rodape__legal">&copy; <span id="ano-atual"></span> Petrocerva Gastrobar</p>
     </div>
-  </section>
+  </footer>
 
-</main>
+  <!-- BOTÃO FLUTUANTE WHATSAPP -->
+  <div class="whatsapp-flutuante-container">
+    <span class="whatsapp-flutuante__mensagem" id="mensagem-whatsapp-flutuante" aria-hidden="true">
+      Precisa tirar alguma dúvida?
+    </span>
 
-<!-- RODAPÉ -->
-<footer class="rodape">
-  <div class="rodape__conteudo">
-    <div class="rodape__marca">
-      <p class="rodape__nome">Petrocerva Gastrobar</p>
-      <p class="rodape__endereco">Rua Veneza, 1039, Centro, Paulista, PE</p>
-    </div>
-
-    <nav class="rodape__navegacao" aria-label="Navegação do rodapé">
-      <a href="#inicio">Início</a>
-      <a href="#programacao">Programação</a>
-      <a href="#experiencia">Experiência</a>
-      <a href="#localizacao">Localização</a>
-    </nav>
-
-    <div class="rodape__contato">
-      <a href="https://wa.me/5581981782875" target="_blank" rel="noopener noreferrer">WhatsApp: (81) 98178-2875</a>
-      <a href="https://www.instagram.com/petrocerva_/" target="_blank" rel="noopener noreferrer">@petrocerva_</a>
-    </div>
-
-    <p class="rodape__legal">&copy; <span id="ano-atual"></span> Petrocerva Gastrobar</p>
+    <a class="whatsapp-flutuante"
+      href="https://wa.me/5581981782875?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Petrocerva%20e%20quero%20saber%20mais%20sobre%20a%20programa%C3%A7%C3%A3o%20deste%20fim%20de%20semana."
+      target="_blank" rel="noopener noreferrer" aria-label="Falar com o Petrocerva pelo WhatsApp">
+      <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
+        <path
+          d="M16 3C9 3 3.3 8.6 3.3 15.5c0 2.6.8 5 2.1 7L3 29l6.7-2.3c1.9 1 4.1 1.6 6.3 1.6 7 0 12.7-5.6 12.7-12.5S23 3 16 3Zm0 22.7c-2 0-3.9-.5-5.5-1.5l-.4-.2-4 1.3 1.3-3.9-.3-.4a10.2 10.2 0 0 1-1.6-5.5c0-5.7 4.7-10.3 10.5-10.3s10.5 4.6 10.5 10.3S21.8 25.7 16 25.7Z"
+          fill="currentColor" />
+        <path
+          d="M21.4 18.3c-.3-.1-1.7-.9-2-1s-.5-.1-.6.1-.6.9-.7 1-.3.1-.6 0a8.5 8.5 0 0 1-2.5-1.5 9.2 9.2 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.6l.4-.5.3-.4v-.4c0-.1-.6-1.5-.8-2s-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3s-.9.9-.9 2.2.9 2.6 1.1 2.7c.1.2 1.9 3 4.7 4.1.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.3s.2-1.2.2-1.3-.2-.2-.5-.3Z"
+          fill="currentColor" />
+      </svg>
+    </a>
   </div>
-</footer>
 
-<!-- BOTÃO FLUTUANTE WHATSAPP -->
-<a class="whatsapp-flutuante" href="https://wa.me/5581981782875?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Petrocerva%20e%20quero%20saber%20mais%20sobre%20a%20programa%C3%A7%C3%A3o%20deste%20fim%20de%20semana." target="_blank" rel="noopener noreferrer" aria-label="Falar com a Petrocerva pelo WhatsApp">
-  <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9 3 3.3 8.6 3.3 15.5c0 2.6.8 5 2.1 7L3 29l6.7-2.3c1.9 1 4.1 1.6 6.3 1.6 7 0 12.7-5.6 12.7-12.5S23 3 16 3Zm0 22.7c-2 0-3.9-.5-5.5-1.5l-.4-.2-4 1.3 1.3-3.9-.3-.4a10.2 10.2 0 0 1-1.6-5.5c0-5.7 4.7-10.3 10.5-10.3s10.5 4.6 10.5 10.3S21.8 25.7 16 25.7Z" fill="currentColor"/><path d="M21.4 18.3c-.3-.1-1.7-.9-2-1s-.5-.1-.6.1-.6.9-.7 1-.3.1-.6 0a8.5 8.5 0 0 1-2.5-1.5 9.2 9.2 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.6l.4-.5.3-.4v-.4c0-.1-.6-1.5-.8-2s-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3s-.9.9-.9 2.2.9 2.6 1.1 2.7c.1.2 1.9 3 4.7 4.1.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.3s.2-1.2.2-1.3-.2-.2-.5-.3Z" fill="currentColor"/></svg>
-</a>
-
-<script src="src/js/index.js" defer></script>
+  <script src="src/js/index.js" defer></script>
 </body>
+
 </html>

@@ -139,7 +139,7 @@
     align-items: stretch;
   }
 
-  .atracao__imagem {
+  .atracao__moldura-imagem {
     flex: 0 0 45%;
     max-width: 45%;
   }
@@ -166,7 +166,7 @@
     font-size: clamp(2rem, 4vw, 2.75rem);
   }
 
-  .whatsapp-flutuante {
+  .whatsapp-flutuante-container {
     right: var(--espacamento-xl);
     bottom: var(--espacamento-xl);
   }
