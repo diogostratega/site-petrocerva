@@ -248,7 +248,6 @@ function inicializarCarrosselProgramacao() {
   const botoesProximaAtracao = Array.from(
     document.querySelectorAll(".js-seta-proxima")
   );
-  const botaoControleAutomatico = document.getElementById("botao-controle-automatico");
   const barraDeProgresso = document.getElementById("barra-progresso-autoplay");
   const anuncioDoCarrossel = document.getElementById("anuncio-carrossel");
 
@@ -387,37 +386,6 @@ function inicializarCarrosselProgramacao() {
     barraDeProgresso.style.transform = "";
   }
 
-  function atualizarEstadoDosControles() {
-    if (!botaoControleAutomatico) return;
-
-    const iconePausar = botaoControleAutomatico.querySelector(".icone-pausar");
-    const iconeRetomar = botaoControleAutomatico.querySelector(".icone-retomar");
-    const textoControle = botaoControleAutomatico.querySelector(
-      ".carrossel-programacao__texto-controle"
-    );
-
-    const autoplayPausado = autoplayFoiPausadoPeloUsuario;
-
-    botaoControleAutomatico.setAttribute(
-      "aria-label",
-      autoplayPausado ? "Retomar carrossel" : "Pausar carrossel"
-    );
-
-    if (textoControle) {
-      textoControle.textContent = autoplayPausado ? "Retomar" : "Pausar";
-    }
-
-    if (iconePausar && iconeRetomar) {
-      if (autoplayPausado) {
-        iconePausar.setAttribute("hidden", "");
-        iconeRetomar.removeAttribute("hidden");
-      } else {
-        iconeRetomar.setAttribute("hidden", "");
-        iconePausar.removeAttribute("hidden");
-      }
-    }
-  }
-
   // Controles manuais dos dias.
   botoesDosDias.forEach((botao) => {
     botao.addEventListener("click", () => {
@@ -440,20 +408,6 @@ function inicializarCarrosselProgramacao() {
       reiniciarContagemDoCarrossel();
     });
   });
-
-  // Botão pausar/retomar.
-  if (botaoControleAutomatico) {
-    botaoControleAutomatico.addEventListener("click", () => {
-      autoplayFoiPausadoPeloUsuario = !autoplayFoiPausadoPeloUsuario;
-      atualizarEstadoDosControles();
-
-      if (autoplayFoiPausadoPeloUsuario) {
-        pausarCarrosselAutomatico();
-      } else {
-        reiniciarContagemDoCarrossel();
-      }
-    });
-  }
 
   // Pausa ao passar o mouse.
   carrossel.addEventListener("mouseenter", pausarCarrosselAutomatico);
@@ -571,11 +525,9 @@ function inicializarCarrosselProgramacao() {
 
   // Estado inicial.
   exibirSlideDaProgramacao(0);
-  atualizarEstadoDosControles();
 
   if (prefereMovimentoReduzido) {
     autoplayFoiPausadoPeloUsuario = true;
-    atualizarEstadoDosControles();
   } else {
     iniciarCarrosselAutomatico();
   }

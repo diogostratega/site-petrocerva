@@ -238,50 +238,6 @@ h3 {
 }
 
 /* ===================================================
-   RAIOS DECORATIVOS (motivo da logo)
-   =================================================== */
-
-.motivo-raios {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.motivo-raios::before {
-  content: "";
-  position: absolute;
-  top: -35%;
-  right: -25%;
-  width: 55rem;
-  height: 55rem;
-  background:
-    repeating-conic-gradient(
-      from 0deg,
-      rgb(245 179 53 / 14%) 0deg 6deg,
-      transparent 6deg 24deg
-    );
-  border-radius: 50%;
-}
-
-.motivo-raios::after {
-  content: "";
-  position: absolute;
-  bottom: -30%;
-  left: -20%;
-  width: 30rem;
-  height: 30rem;
-  background:
-    repeating-conic-gradient(
-      from 15deg,
-      rgb(0 168 107 / 18%) 0deg 5deg,
-      transparent 5deg 20deg
-    );
-  border-radius: 50%;
-}
-
-/* ===================================================
    CABEÇALHO
    =================================================== */
 
@@ -350,11 +306,17 @@ h3 {
   border-radius: 50%;
   color: var(--cor-texto-titulo);
   flex-shrink: 0;
-  transition: background-color var(--transicao-rapida), color var(--transicao-rapida);
+  transition: background-color var(--transicao-rapida), color var(--transicao-rapida),
+    transform var(--transicao-rapida);
 }
 
 .cabecalho__botao-tema:hover {
   background-color: var(--cor-creme-suave);
+}
+
+.cabecalho__botao-tema:active,
+.cabecalho__botao-menu:active {
+  transform: scale(0.92);
 }
 
 .cabecalho__botao-menu {
@@ -365,6 +327,7 @@ h3 {
   height: 2.75rem;
   border-radius: var(--raio-borda-sm);
   flex-shrink: 0;
+  transition: transform var(--transicao-rapida);
 }
 
 .cabecalho__icone-menu {
@@ -437,10 +400,11 @@ h3 {
   min-height: 3rem;
   padding: var(--espacamento-sm) var(--espacamento-lg);
   background-color: var(--cor-dourado-marca);
-  color: var(--cor-texto-escuro);
+  color: var(--cor-verde-profundo-suave);
   font-weight: 700;
   border-radius: var(--raio-borda-sm);
   text-align: center;
+  transition: transform var(--transicao-rapida);
 }
 
 /* ===================================================
@@ -1026,7 +990,7 @@ h3 {
   gap: var(--espacamento-sm);
   margin-bottom: var(--espacamento-lg);
   text-decoration: none;
-  transition: opacity var(--transicao-rapida);
+  transition: opacity var(--transicao-rapida), transform var(--transicao-rapida);
 }
 
 .depoimentos__resumo:hover,
@@ -1315,4 +1279,53 @@ h3 {
 
 .whatsapp-flutuante:hover {
   transform: translateY(-2px);
+}
+
+/* ===================================================
+   LINK "PULAR PARA O CONTEÚDO"
+   Fica fora da tela até receber foco pelo teclado.
+   =================================================== */
+
+.link-pular {
+  position: fixed;
+  top: var(--espacamento-md);
+  left: var(--espacamento-md);
+  z-index: 300;
+  padding: 0.75rem var(--espacamento-lg);
+  background-color: var(--cor-dourado-marca);
+  color: var(--cor-verde-profundo);
+  font-weight: 700;
+  border-radius: var(--raio-borda-sm);
+  box-shadow: var(--sombra-card);
+  transform: translateY(calc(-100% - var(--espacamento-md)));
+  transition: transform var(--transicao-rapida);
+}
+
+.link-pular:focus {
+  transform: translateY(0);
+}
+
+/* ===================================================
+   ESTADO PRESSIONADO (feedback tátil de clique)
+   =================================================== */
+
+.hero__cta:active,
+.atracao__botao-whatsapp:active,
+.cardapio__botao:active,
+.localizacao__botao:active,
+.menu-principal__whatsapp:active,
+.depoimentos__resumo:active {
+  transform: translateY(1px);
+}
+
+.experiencia__item:active {
+  transform: translateY(0);
+}
+
+.carrossel-programacao__botao-seta:active {
+  transform: translateY(-50%) scale(0.96);
+}
+
+.whatsapp-flutuante:active {
+  transform: scale(0.94);
 }
