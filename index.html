@@ -611,6 +611,19 @@
     </a>
   </div>
 
+  <!-- LIGHTBOX (imagem ampliada) -->
+  <dialog class="lightbox" id="lightbox" aria-label="Imagem ampliada">
+    <figure class="lightbox__figura">
+      <button type="button" class="lightbox__fechar" id="lightbox-fechar" aria-label="Fechar imagem ampliada">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6 6 18" />
+        </svg>
+      </button>
+      <img class="lightbox__imagem" id="lightbox-imagem" src="" alt="">
+    </figure>
+  </dialog>
+
   <script src="src/js/index.js" defer></script>
 </body>
 

@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   inicializarCarrosselProgramacao();
   inicializarAnimacoesDeEntrada();
   inicializarRolagemSuave();
+  inicializarLightbox();
   preencherAnoAtual();
 
   const agendarMensagemWhatsapp = prepararMensagemWhatsapp();
@@ -275,6 +276,7 @@ function inicializarCarrosselProgramacao() {
   let estaArrastando = false;
   let posicaoInicialDoArraste = 0;
   let deslocamentoAtualDoArraste = 0;
+  let lightboxEstaAberto = false;
 
   function exibirSlideDaProgramacao(novoIndice, { anunciar = false } = {}) {
     indiceAtual = ((novoIndice % totalDeSlides) + totalDeSlides) % totalDeSlides;
@@ -352,7 +354,8 @@ function inicializarCarrosselProgramacao() {
       !autoplayFoiPausadoPeloUsuario &&
       paginaEstaVisivel &&
       !prefereMovimentoReduzido &&
-      !estaArrastando
+      !estaArrastando &&
+      !lightboxEstaAberto
     );
   }
 
@@ -479,6 +482,23 @@ function inicializarCarrosselProgramacao() {
     } else {
       pausarCarrosselAutomatico();
     }
+  });
+
+  // Pausa enquanto o lightbox estiver aberto (uma foto pode ter vindo daqui).
+  document.addEventListener("petrocerva:lightbox-abriu", () => {
+    lightboxEstaAberto = true;
+    pausarCarrosselAutomatico();
+  });
+  document.addEventListener("petrocerva:lightbox-fechou", () => {
+    lightboxEstaAberto = false;
+    if (deveAutoplayRodar()) iniciarCarrosselAutomatico();
+  });
+
+  // O lightbox pede para trocar de dia quando o usuário navega entre os
+  // flyers ampliados — o carrossel acompanha por baixo.
+  document.addEventListener("petrocerva:ir-para-dia", (evento) => {
+    const dia = evento.detail && evento.detail.dia;
+    if (dia) irParaODia(dia);
   });
 
   // Respeita prefers-reduced-motion, inclusive se mudar em tempo real.
@@ -616,6 +636,387 @@ function inicializarAnimacoesDeEntrada() {
   );
 
   elementosParaAnimar.forEach((elemento) => observadorDeEntrada.observe(elemento));
+}
+
+// ===================================================
+// LIGHTBOX — imagens ampliadas
+// ===================================================
+//
+// Clique (ou Enter/Espaço) numa foto da galeria, do cardápio ou do carrossel
+// abre um <dialog> modal: a imagem "cresce" da miniatura até o centro da tela
+// (FLIP com transform/opacity) sobre um fundo escurecido. Fecha por Esc, clique
+// fora, botão X ou botão voltar do navegador. Respeita prefers-reduced-motion
+// (aparece/some sem a animação de expansão).
+//
+// Fotos do carrossel: o zoom só existe no desktop (no mobile o flyer já aparece
+// grande e inteiro). Com um flyer ampliado, arrastar a imagem para os lados —
+// ou usar as setas do teclado — troca de dia de show; o carrossel acompanha por
+// baixo. O autoplay pausa enquanto o lightbox está aberto.
+
+function inicializarLightbox() {
+  const imagensAmpliaveis = Array.from(
+    document.querySelectorAll(".galeria__imagem, .cardapio__imagem, .atracao__imagem")
+  );
+  const dialogo = document.getElementById("lightbox");
+  const imagemAmpliada = document.getElementById("lightbox-imagem");
+  const botaoFechar = document.getElementById("lightbox-fechar");
+
+  if (imagensAmpliaveis.length === 0 || !dialogo || !imagemAmpliada || !botaoFechar) {
+    return;
+  }
+
+  // Sem suporte a <dialog> modal: melhor não prometer o recurso.
+  if (typeof dialogo.showModal !== "function") return;
+
+  const DURACAO_MS = 300;
+  const consultaMovimentoReduzido = window.matchMedia("(prefers-reduced-motion: reduce)");
+  // Zoom das fotos do carrossel: só a partir do desktop.
+  const consultaDesktop = window.matchMedia("(min-width: 64rem)");
+
+  const flyersDoCarrossel = imagensAmpliaveis.filter((imagem) =>
+    imagem.closest(".carrossel-programacao__slide")
+  );
+
+  let miniaturaDeOrigem = null;
+  let indiceFlyer = -1;
+  let estaFechando = false;
+  let cancelarTrocaFlyer = null;
+  let houveArraste = false;
+  let arraste = null;
+
+  function calcularTransformacao(retanguloDestino, retanguloOrigem) {
+    const escalaX = retanguloOrigem.width / retanguloDestino.width;
+    const escalaY = retanguloOrigem.height / retanguloDestino.height;
+    const deslocX =
+      retanguloOrigem.left + retanguloOrigem.width / 2 -
+      (retanguloDestino.left + retanguloDestino.width / 2);
+    const deslocY =
+      retanguloOrigem.top + retanguloOrigem.height / 2 -
+      (retanguloDestino.top + retanguloDestino.height / 2);
+    return `translate(${deslocX}px, ${deslocY}px) scale(${escalaX}, ${escalaY})`;
+  }
+
+  function animarExpansao(retanguloOrigem) {
+    const retanguloDestino = imagemAmpliada.getBoundingClientRect();
+    if (!retanguloDestino.width || !retanguloDestino.height) return;
+
+    imagemAmpliada.style.transition = "none";
+    imagemAmpliada.style.transform = calcularTransformacao(retanguloDestino, retanguloOrigem);
+    // Força reflow para o browser registrar o ponto de partida.
+    void imagemAmpliada.offsetWidth;
+    imagemAmpliada.style.transition = `transform ${DURACAO_MS}ms cubic-bezier(0.16, 1, 0.3, 1)`;
+    imagemAmpliada.style.transform = "translate(0, 0) scale(1)";
+  }
+
+  function zerarTransformada() {
+    imagemAmpliada.style.transition = "none";
+    imagemAmpliada.style.transform = "";
+    void imagemAmpliada.offsetWidth;
+  }
+
+  function abrir(miniatura) {
+    if (dialogo.open) return;
+
+    miniaturaDeOrigem = miniatura;
+    estaFechando = false;
+    indiceFlyer = flyersDoCarrossel.indexOf(miniatura);
+
+    if (indiceFlyer !== -1) {
+      // Pré-carrega os outros flyers para a navegação não piscar.
+      flyersDoCarrossel.forEach((flyer) => {
+        const url = flyer.currentSrc || flyer.src;
+        if (url) {
+          const preload = new Image();
+          preload.src = url;
+        }
+      });
+    }
+
+    const retanguloOrigem = miniatura.getBoundingClientRect();
+    imagemAmpliada.src = miniatura.currentSrc || miniatura.src;
+    imagemAmpliada.alt = miniatura.alt || "";
+    imagemAmpliada.style.transition = "";
+    imagemAmpliada.style.transform = "";
+
+    history.pushState({ lightbox: true }, "");
+    dialogo.showModal();
+    document.documentElement.classList.add("sem-scroll");
+    dialogo.classList.add("lightbox--aberto");
+    dialogo.classList.toggle("lightbox--navegavel", indiceFlyer !== -1);
+    document.dispatchEvent(new CustomEvent("petrocerva:lightbox-abriu"));
+
+    if (consultaMovimentoReduzido.matches) return;
+
+    if (imagemAmpliada.complete && imagemAmpliada.naturalWidth) {
+      animarExpansao(retanguloOrigem);
+    } else {
+      imagemAmpliada.addEventListener(
+        "load",
+        () => animarExpansao(retanguloOrigem),
+        { once: true }
+      );
+    }
+  }
+
+  // Troca o flyer ampliado (direcao: 1 = próximo dia, -1 = anterior) com um
+  // deslize lateral, e pede ao carrossel para acompanhar.
+  function trocarFlyer(direcao) {
+    if (indiceFlyer === -1 || flyersDoCarrossel.length < 2 || !dialogo.open) return;
+    if (cancelarTrocaFlyer) cancelarTrocaFlyer();
+
+    const total = flyersDoCarrossel.length;
+    const novoIndice = (indiceFlyer + direcao + total) % total;
+    if (novoIndice === indiceFlyer) return;
+
+    indiceFlyer = novoIndice;
+    const flyer = flyersDoCarrossel[novoIndice];
+    miniaturaDeOrigem = flyer;
+
+    const slide = flyer.closest(".carrossel-programacao__slide");
+    if (slide && slide.dataset.dia) {
+      document.dispatchEvent(
+        new CustomEvent("petrocerva:ir-para-dia", { detail: { dia: slide.dataset.dia } })
+      );
+    }
+
+    const novaSrc = flyer.currentSrc || flyer.src;
+    const novoAlt = flyer.alt || "";
+
+    if (consultaMovimentoReduzido.matches) {
+      imagemAmpliada.style.transition = "none";
+      imagemAmpliada.style.transform = "";
+      imagemAmpliada.src = novaSrc;
+      imagemAmpliada.alt = novoAlt;
+      return;
+    }
+
+    const larguraTela = Math.max(window.innerWidth, 1);
+    const saida = direcao > 0 ? -larguraTela : larguraTela;
+
+    imagemAmpliada.style.transition = `transform ${DURACAO_MS}ms ease`;
+    imagemAmpliada.style.transform = `translateX(${saida}px)`;
+
+    let feito = false;
+    const concluir = () => {
+      if (feito) return;
+      feito = true;
+      imagemAmpliada.removeEventListener("transitionend", concluir);
+      window.clearTimeout(temporizador);
+      cancelarTrocaFlyer = null;
+
+      imagemAmpliada.src = novaSrc;
+      imagemAmpliada.alt = novoAlt;
+      imagemAmpliada.style.transition = "none";
+      imagemAmpliada.style.transform = `translateX(${-saida}px)`;
+      void imagemAmpliada.offsetWidth;
+      imagemAmpliada.style.transition = `transform ${DURACAO_MS}ms cubic-bezier(0.16, 1, 0.3, 1)`;
+      imagemAmpliada.style.transform = "translateX(0)";
+    };
+    imagemAmpliada.addEventListener("transitionend", concluir);
+    const temporizador = window.setTimeout(concluir, DURACAO_MS + 80);
+    cancelarTrocaFlyer = () => {
+      feito = true;
+      imagemAmpliada.removeEventListener("transitionend", concluir);
+      window.clearTimeout(temporizador);
+      cancelarTrocaFlyer = null;
+    };
+  }
+
+  function limpar() {
+    if (cancelarTrocaFlyer) cancelarTrocaFlyer();
+    dialogo.classList.remove("lightbox--aberto");
+    document.documentElement.classList.remove("sem-scroll");
+    imagemAmpliada.style.transition = "";
+    imagemAmpliada.style.transform = "";
+    dialogo.close();
+  }
+
+  function fechar() {
+    if (estaFechando || !dialogo.open) return;
+    estaFechando = true;
+    if (cancelarTrocaFlyer) cancelarTrocaFlyer();
+
+    if (consultaMovimentoReduzido.matches || !miniaturaDeOrigem) {
+      limpar();
+      return;
+    }
+
+    // FLIP de volta: encolhe até a miniatura antes de sumir.
+    dialogo.classList.remove("lightbox--aberto");
+    // Parte da posição central real (uma troca de flyer pode ter deixado a
+    // imagem deslocada no eixo X).
+    zerarTransformada();
+
+    const retanguloDestino = imagemAmpliada.getBoundingClientRect();
+    const retanguloOrigem = miniaturaDeOrigem.getBoundingClientRect();
+
+    imagemAmpliada.style.transition = `transform ${DURACAO_MS}ms cubic-bezier(0.4, 0, 1, 1)`;
+    imagemAmpliada.style.transform = calcularTransformacao(retanguloDestino, retanguloOrigem);
+
+    let finalizado = false;
+    const encerrar = () => {
+      if (finalizado) return;
+      finalizado = true;
+      imagemAmpliada.removeEventListener("transitionend", encerrar);
+      limpar();
+    };
+    imagemAmpliada.addEventListener("transitionend", encerrar);
+    window.setTimeout(encerrar, DURACAO_MS + 80);
+  }
+
+  imagensAmpliaveis.forEach((imagem) => {
+    const slideDoCarrossel = imagem.closest(".carrossel-programacao__slide");
+    const zoomHabilitado = () => !slideDoCarrossel || consultaDesktop.matches;
+
+    if (slideDoCarrossel) {
+      // No desktop: vira "botão", e só a foto do slide visível é tabulável.
+      // No mobile: some tudo — o carrossel volta ao comportamento antigo.
+      const sincronizar = () => {
+        if (consultaDesktop.matches) {
+          imagem.setAttribute("role", "button");
+          imagem.setAttribute("aria-haspopup", "dialog");
+          const ativo = slideDoCarrossel.getAttribute("aria-hidden") === "false";
+          imagem.setAttribute("tabindex", ativo ? "0" : "-1");
+        } else {
+          imagem.removeAttribute("role");
+          imagem.removeAttribute("aria-haspopup");
+          imagem.removeAttribute("tabindex");
+        }
+      };
+      sincronizar();
+      new MutationObserver(sincronizar).observe(slideDoCarrossel, {
+        attributes: true,
+        attributeFilter: ["aria-hidden"],
+      });
+      consultaDesktop.addEventListener("change", sincronizar);
+    } else {
+      imagem.classList.add("imagem-ampliavel");
+      imagem.setAttribute("role", "button");
+      imagem.setAttribute("aria-haspopup", "dialog");
+      imagem.setAttribute("tabindex", "0");
+    }
+
+    // Distingue clique de arraste (o carrossel move-se ao arrastar a foto).
+    let pontoInicial = null;
+    imagem.addEventListener("pointerdown", (evento) => {
+      pontoInicial = { x: evento.clientX, y: evento.clientY };
+    });
+    imagem.addEventListener("click", (evento) => {
+      if (!zoomHabilitado()) return;
+      if (pontoInicial) {
+        const arrastou =
+          Math.abs(evento.clientX - pontoInicial.x) > 10 ||
+          Math.abs(evento.clientY - pontoInicial.y) > 10;
+        pontoInicial = null;
+        if (arrastou) return;
+      }
+      abrir(imagem);
+    });
+
+    imagem.addEventListener("keydown", (evento) => {
+      if (!zoomHabilitado()) return;
+      if (evento.key === "Enter" || evento.key === " ") {
+        evento.preventDefault();
+        abrir(imagem);
+      }
+    });
+  });
+
+  // --- Arrastar a imagem ampliada para trocar de flyer (só quando veio do
+  //     carrossel). ---
+  imagemAmpliada.draggable = false; // <img> é arrastável por padrão (drag & drop nativo)
+  imagemAmpliada.addEventListener("dragstart", (evento) => evento.preventDefault());
+  imagemAmpliada.addEventListener("pointerdown", (evento) => {
+    if (indiceFlyer === -1 || !dialogo.open) return;
+    evento.preventDefault(); // impede o drag & drop nativo da imagem
+    if (cancelarTrocaFlyer) cancelarTrocaFlyer();
+    arraste = { inicioX: evento.clientX, desloc: 0, id: evento.pointerId };
+    houveArraste = false;
+    try {
+      imagemAmpliada.setPointerCapture(evento.pointerId);
+    } catch (erro) {
+      /* alguns navegadores recusam capture em certos ponteiros — segue sem. */
+    }
+    imagemAmpliada.style.transition = "none";
+  });
+
+  imagemAmpliada.addEventListener("pointermove", (evento) => {
+    if (!arraste || evento.pointerId !== arraste.id) return;
+    arraste.desloc = evento.clientX - arraste.inicioX;
+    if (Math.abs(arraste.desloc) > 5) houveArraste = true;
+    imagemAmpliada.style.transform = `translateX(${arraste.desloc}px)`;
+  });
+
+  function encerrarArraste(evento) {
+    if (!arraste || (evento && evento.pointerId !== arraste.id)) return;
+    const desloc = arraste.desloc;
+    arraste = null;
+
+    const LIMIAR = 60;
+    if (Math.abs(desloc) > LIMIAR) {
+      trocarFlyer(desloc < 0 ? 1 : -1);
+    } else {
+      imagemAmpliada.style.transition = `transform ${DURACAO_MS}ms cubic-bezier(0.16, 1, 0.3, 1)`;
+      imagemAmpliada.style.transform = "translateX(0)";
+    }
+    if (houveArraste) {
+      // Mantém o guard do clique-fora ativo até o 'click' desta sequência passar.
+      window.setTimeout(() => {
+        houveArraste = false;
+      }, 0);
+    }
+  }
+  imagemAmpliada.addEventListener("pointerup", encerrarArraste);
+  imagemAmpliada.addEventListener("pointercancel", encerrarArraste);
+
+  botaoFechar.addEventListener("click", fechar);
+
+  // Clique fora da imagem (área do backdrop) — ignora se acabou de arrastar.
+  dialogo.addEventListener("click", (evento) => {
+    if (houveArraste) {
+      houveArraste = false;
+      return;
+    }
+    if (evento.target === dialogo) fechar();
+  });
+
+  // Esc: evita o fechamento instantâneo do <dialog> para animar a saída.
+  dialogo.addEventListener("cancel", (evento) => {
+    evento.preventDefault();
+    fechar();
+  });
+
+  // Setas do teclado navegam entre os flyers ampliados.
+  dialogo.addEventListener("keydown", (evento) => {
+    if (indiceFlyer === -1) return;
+    if (evento.key === "ArrowRight") {
+      evento.preventDefault();
+      trocarFlyer(1);
+    } else if (evento.key === "ArrowLeft") {
+      evento.preventDefault();
+      trocarFlyer(-1);
+    }
+  });
+
+  // Fechou (por qualquer via): devolve o foco e desfaz o passo no histórico.
+  dialogo.addEventListener("close", () => {
+    estaFechando = false;
+    indiceFlyer = -1;
+    if (cancelarTrocaFlyer) cancelarTrocaFlyer();
+    dialogo.classList.remove("lightbox--navegavel");
+    document.dispatchEvent(new CustomEvent("petrocerva:lightbox-fechou"));
+    if (miniaturaDeOrigem && typeof miniaturaDeOrigem.focus === "function") {
+      miniaturaDeOrigem.focus();
+    }
+    if (history.state && history.state.lightbox) {
+      history.back();
+    }
+  });
+
+  // Botão/gesto de voltar do navegador.
+  window.addEventListener("popstate", () => {
+    if (dialogo.open) fechar();
+  });
 }
 
 // ===================================================
