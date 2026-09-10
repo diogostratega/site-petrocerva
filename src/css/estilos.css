@@ -1017,6 +1017,9 @@ h3 {
 .galeria__grade {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "painel painel"
+    "amb1   amb2";
   gap: var(--espacamento-sm);
 }
 
@@ -1027,6 +1030,14 @@ h3 {
   border-radius: var(--raio-borda-md);
   background-color: var(--cor-verde-profundo-suave);
 }
+
+.galeria__item--painel {
+  grid-area: painel;
+  aspect-ratio: 16 / 10;
+}
+
+.galeria__item--amb1 { grid-area: amb1; }
+.galeria__item--amb2 { grid-area: amb2; }
 
 .galeria__imagem {
   display: block;
