@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Aplica o tema salvo (ou a preferência do sistema) antes da 1ª pintura.
+       Na mesa do bar o celular quase sempre está no modo escuro. -->
+  <script>
+    (function () {
+      try {
+        var salvo = localStorage.getItem("tema");
+        var preferemEscuro =
+          window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var tema = salvo === "dark" || salvo === "light" ? salvo : (preferemEscuro ? "dark" : "light");
+        if (tema === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      } catch (erro) {
+        /* localStorage indisponível (ex.: navegação privada). Segue no tema claro. */
+      }
+    })();
+  </script>
+
+  <title>Cardápio | Petrocerva Gastrobar</title>
+  <meta name="description"
+    content="Cardápio do Petrocerva Gastrobar: petiscos, porções e drinks da casa. Centro de Paulista, PE.">
+  <meta name="robots" content="index, follow">
+
+  <link rel="icon" type="image/png" href="src/img/logo-petrocerva.png">
+
+  <!-- Google Fonts: Ubuntu (mesma do site) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="src/css/reset.css">
+  <link rel="stylesheet" href="src/css/estilos.css">
+  <link rel="stylesheet" href="src/css/cardapio.css">
+</head>
+
+<body class="pagina-qr">
+
+  <a class="link-pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="topo-qr">
+    <div class="topo-qr__conteudo envoltorio">
+      <a class="topo-qr__marca" href="index.html"
+        aria-label="Petrocerva Gastrobar, voltar para a página inicial">
+        <picture>
+          <source srcset="src/img/logo-petrocerva.webp" type="image/webp">
+          <img class="topo-qr__logo" src="src/img/logo-petrocerva.png" alt="" width="40" height="34">
+        </picture>
+        <span class="topo-qr__marca-texto">PETROCERVA<span class="topo-qr__marca-sub">Gastrobar</span></span>
+      </a>
+
+      <a class="topo-qr__voltar" href="index.html">Voltar ao site</a>
+
+      <button type="button" class="cabecalho__botao-tema" id="botao-tema" aria-label="Ativar modo escuro">
+        <svg class="icone-lua" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden>
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
+        </svg>
+        <svg class="icone-sol" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" />
+          <path
+            d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="conteudo" class="envoltorio">
+
+    <div class="qr-cabecalho">
+      <h1 class="qr-cabecalho__titulo">Cardápio</h1>
+      <p class="qr-cabecalho__apoio">Os petiscos e drinks da casa para acompanhar a noite.</p>
+    </div>
+
+    <!-- ====================================================================
+         CONTEÚDO PROVISÓRIO
+         Itens, descrições e preços abaixo são genéricos, só para montar o
+         layout. Substituir pela lista real e pelas fotos reais quando
+         chegarem. As fotos se repetem de propósito (placeholder).
+         ==================================================================== -->
+
+    <!-- PRATOS -->
+    <section class="qr-secao" aria-labelledby="titulo-pratos">
+      <h2 class="menu-secao__titulo" id="titulo-pratos">Pratos</h2>
+
+      <article class="menu-destaque">
+        <img class="menu-destaque__foto" src="src/img/cardapio-prato-02.jpg"
+          alt="Petisco do cardápio do Petrocerva Gastrobar" width="800" height="800" loading="lazy" decoding="async">
+        <p class="menu-destaque__linha">
+          <span class="menu-destaque__nome">Bolinho de feijoada</span>
+          <span class="menu-destaque__preco">R$ 38</span>
+        </p>
+        <p class="menu-destaque__descricao">Seis unidades douradas, recheio de feijoada cremosa, servidas com
+          farofa crocante e vinagrete.</p>
+      </article>
+
+      <div class="menu-lista">
+        <article class="menu-item">
+          <img class="menu-item__foto" src="src/img/cardapio-prato-01.jpg" alt="" width="800" height="800"
+            loading="lazy" decoding="async">
+          <div class="menu-item__corpo">
+            <p class="menu-item__linha">
+              <span class="menu-item__nome">Batata frita com cheddar e bacon</span>
+              <span class="menu-item__preco">R$ 34</span>
+            </p>
+            <p class="menu-item__descricao">Porção generosa, cheddar cremoso e bacon em cubos.</p>
+          </div>
+        </article>
+
+        <article class="menu-item">
+          <img class="menu-item__foto" src="src/img/cardapio-prato-04.jpg" alt="" width="800" height="800"
+            loading="lazy" decoding="async">
+          <div class="menu-item__corpo">
+            <p class="menu-item__linha">
+              <span class="menu-item__nome">Isca de frango à milanesa</span>
+              <span class="menu-item__preco">R$ 32</span>
+            </p>
+            <p class="menu-item__descricao">Tiras de peito empanadas na hora, com molho da casa.</p>
+          </div>
+        </article>
+
+        <article class="menu-item">
+          <img class="menu-item__foto" src="src/img/cardapio-prato-01.jpg" alt="" width="800" height="800"
+            loading="lazy" decoding="async">
+          <div class="menu-item__corpo">
+            <p class="menu-item__linha">
+              <span class="menu-item__nome">Linguiça artesanal acebolada</span>
+              <span class="menu-item__preco">R$ 36</span>
+            </p>
+            <p class="menu-item__descricao">Linguiça suína na chapa, cebola caramelizada e pão tostado.</p>
+          </div>
+        </article>
+
+        <article class="menu-item">
+          <img class="menu-item__foto" src="src/img/cardapio-prato-04.jpg" alt="" width="800" height="800"
+            loading="lazy" decoding="async">
+          <div class="menu-item__corpo">
+            <p class="menu-item__linha">
+              <span class="menu-item__nome">Bolinho de bacalhau</span>
+              <span class="menu-item__preco">R$ 42</span>
+            </p>
+            <p class="menu-item__descricao">Oito unidades, douradas por fora e macias por dentro.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- DRINKS -->
+    <section class="qr-secao" aria-labelledby="titulo-drinks">
+      <h2 class="menu-secao__titulo" id="titulo-drinks">Drinks</h2>
+
+      <article class="menu-destaque">
+        <img class="menu-destaque__foto" src="src/img/cardapio-drink-01.jpg"
+          alt="Drink autoral do Petrocerva Gastrobar" width="800" height="800" loading="lazy" decoding="async">
+        <p class="menu-destaque__linha">
+          <span class="menu-destaque__nome">Caipirinha da casa</span>
+          <span class="menu-destaque__preco">R$ 22</span>
+        </p>
+        <p class="menu-destaque__descricao">Cachaça artesanal, limão-taiti e açúcar. Também com frutas da
+          estação.</p>
+      </article>
+
+      <div class="menu-lista">
+        <article class="menu-item">
+          <img class="menu-item__foto" src="src/img/cardapio-drink-01.jpg" alt="" width="800" height="800"
+            loading="lazy" decoding="async">
+          <div class="menu-item__corpo">
+            <p class="menu-item__linha">
+              <span class="menu-item__nome">Gin-tônica com especiarias</span>
+              <span class="menu-item__preco">R$ 28</span>
+            </p>
+            <p class="menu-item__descricao">Gin, água tônica, zimbro e limão-siciliano.</p>
+          </div>
+        </article>
+
+        <article class="menu-item">
+          <img class="menu-item__foto" src="src/img/cardapio-drink-01.jpg" alt="" width="800" height="800"
+            loading="lazy" decoding="async">
+          <div class="menu-item__corpo">
+            <p class="menu-item__linha">
+              <span class="menu-item__nome">Chope pilsen 300 ml</span>
+              <span class="menu-item__preco">R$ 12</span>
+            </p>
+            <p class="menu-item__descricao">Puxado na pressão certa, sempre gelado.</p>
+          </div>
+        </article>
+
+        <article class="menu-item">
+          <img class="menu-item__foto" src="src/img/cardapio-drink-01.jpg" alt="" width="800" height="800"
+            loading="lazy" decoding="async">
+          <div class="menu-item__corpo">
+            <p class="menu-item__linha">
+              <span class="menu-item__nome">Suco natural da fruta</span>
+              <span class="menu-item__preco">R$ 10</span>
+            </p>
+            <p class="menu-item__descricao">Copo de 400 ml. Sabores da estação.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- FIM DO CONTEÚDO PROVISÓRIO -->
+
+    <footer class="rodape-qr">
+      <p class="rodape-qr__endereco">Rua Veneza, 1039 - Centro, Paulista-PE. Fins de semana, a partir das 18h.</p>
+      <p><a href="https://wa.me/5581981782875" target="_blank" rel="noopener noreferrer">WhatsApp: (81) 98178-2875</a></p>
+      <a class="rodape-qr__voltar" href="index.html">Voltar ao site</a>
+    </footer>
+
+  </main>
+
+  <!-- Botão de tema: alterna o atributo, guarda a escolha e mantém o ícone. -->
+  <script>
+    (function () {
+      var botao = document.getElementById("botao-tema");
+      if (!botao) return;
+
+      var iconeLua = botao.querySelector(".icone-lua");
+      var iconeSol = botao.querySelector(".icone-sol");
+
+      function estaEscuro() {
+        return document.documentElement.getAttribute("data-theme") === "dark";
+      }
+
+      function refletirIcone(escuro) {
+        botao.setAttribute("aria-label", escuro ? "Ativar modo claro" : "Ativar modo escuro");
+        if (iconeSol) iconeSol.toggleAttribute("hidden", escuro);
+        if (iconeLua) iconeLua.toggleAttribute("hidden", !escuro);
+      }
+
+      botao.addEventListener("click", function () {
+        var escuro = !estaEscuro();
+        if (escuro) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        } else {
+          document.documentElement.removeAttribute("data-theme");
+        }
+        try {
+          localStorage.setItem("tema", escuro ? "dark" : "light");
+        } catch (erro) {
+          /* localStorage indisponível. O tema vale só nesta visita. */
+        }
+        refletirIcone(escuro);
+      });
+
+      refletirIcone(estaEscuro());
+    })();
+  </script>
+</body>
+
+</html>
