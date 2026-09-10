@@ -96,6 +96,51 @@
   color: var(--cor-texto-claro);
 }
 
+/* Aviso dos "queridinhos da casa" abaixo da faixa. */
+.cardapio-aviso {
+  max-width: 44rem;
+  margin: var(--espacamento-md) auto 0;
+  padding: 0 var(--espacamento-md);
+  font-size: 0.9375rem;
+  color: var(--cor-texto-escuro);
+  text-align: center;
+}
+
+.cardapio-aviso__estrela {
+  color: var(--cor-texto-eyebrow);
+}
+
+/* ===================================================
+   FAIXA DE FOTOS
+   Uma única tira entre o aviso e a lista. 2 fotos por linha no celular,
+   4 em telas maiores. Não vira card por item do cardápio.
+   =================================================== */
+
+.cardapio-galeria {
+  max-width: 44rem;
+  margin: var(--espacamento-lg) auto 0;
+  padding: 0 var(--espacamento-md);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--espacamento-xs);
+}
+
+.cardapio-galeria img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 1px solid var(--cor-borda-suave);
+  border-radius: var(--raio-borda-md);
+  background-color: var(--cor-verde-profundo-suave);
+}
+
+@media (min-width: 34rem) {
+  .cardapio-galeria {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 /* ===================================================
    LISTA DE CATEGORIAS (tópicos que abrem/fecham)
    =================================================== */
@@ -150,6 +195,17 @@
   text-transform: uppercase;
 }
 
+/* Unidade de venda da categoria (ex.: "dose / litro", "copo / jarra"). */
+.categoria__nota {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--cor-texto-escuro);
+}
+
 .categoria__seta {
   flex-shrink: 0;
   color: var(--cor-texto-acento-verde);
@@ -171,26 +227,16 @@
 
 .itens {
   display: grid;
-  gap: var(--espacamento-lg);
+  gap: var(--espacamento-md);
 }
 
 .item {
-  display: grid;
-  grid-template-columns: 4.5rem 1fr;
-  gap: var(--espacamento-md);
-  align-items: start;
-}
-
-.item__foto {
-  width: 4.5rem;
-  height: 4.5rem;
-  object-fit: cover;
-  border-radius: var(--raio-borda-sm);
-  background-color: var(--cor-verde-profundo-suave);
-}
-
-.item__corpo {
   min-width: 0;
+}
+
+.item + .item {
+  padding-top: var(--espacamento-md);
+  border-top: 1px solid var(--cor-borda-suave);
 }
 
 .item__linha {
@@ -211,6 +257,13 @@
   flex-shrink: 0;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--cor-texto-eyebrow);
+}
+
+.item__estrela {
+  margin-left: 0.15rem;
+  font-size: 0.85em;
   color: var(--cor-texto-eyebrow);
 }
 
@@ -221,15 +274,6 @@
 }
 
 @media (min-width: 34rem) {
-  .item {
-    grid-template-columns: 6rem 1fr;
-  }
-
-  .item__foto {
-    width: 6rem;
-    height: 6rem;
-  }
-
   .item__nome {
     font-size: 1.125rem;
   }
@@ -251,6 +295,16 @@
 
 .cardapio-rodape__endereco {
   color: var(--cor-texto-escuro);
+}
+
+.cardapio-rodape__wifi,
+.cardapio-rodape__couvert {
+  font-size: 0.9375rem;
+  color: var(--cor-texto-escuro);
+}
+
+.cardapio-rodape__couvert {
+  font-weight: 500;
 }
 
 .cardapio-rodape a {

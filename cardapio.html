@@ -7,7 +7,7 @@
 
   <title>Cardápio | Petrocerva Gastrobar</title>
   <meta name="description"
-    content="Cardápio do Petrocerva Gastrobar: pratos, drinks, porções e sobremesas. Centro de Paulista, PE.">
+    content="Cardápio do Petrocerva Gastrobar: caldinhos, petiscos, entradas, cervejas, baldes, drinks, doses e sucos. Centro de Paulista, PE.">
   <meta name="robots" content="index, follow">
 
   <link rel="icon" type="image/png" href="src/img/logo-petrocerva.png">
@@ -61,19 +61,82 @@
     <h1 class="cardapio-faixa__titulo">Cardápio</h1>
   </div>
 
+  <p class="cardapio-aviso">
+    <span class="cardapio-aviso__estrela" aria-hidden="true">★</span>
+    Itens marcados são os queridinhos da casa.
+  </p>
+
+  <section class="cardapio-galeria" aria-label="Fotos da casa">
+    <img src="src/img/cardapio-prato-02.jpg" alt="Tábua de petiscos do Petrocerva Gastrobar" width="800" height="800"
+      loading="lazy" decoding="async">
+    <img src="src/img/cardapio-drink-01.jpg" alt="Drinks da casa servidos no copo" width="800" height="800" loading="lazy"
+      decoding="async">
+    <img src="src/img/cardapio-prato-04.jpg" alt="Porção de petiscos com fritas" width="800" height="800" loading="lazy"
+      decoding="async">
+    <img src="src/img/cardapio-prato-01.jpg" alt="Petisco quente saindo da cozinha" width="800" height="800"
+      loading="lazy" decoding="async">
+  </section>
+
   <main class="cardapio-lista" id="conteudo">
 
     <!-- ====================================================================
-         CONTEÚDO PROVISÓRIO
-         Categorias, itens, descrições e preços são genéricos, só para montar
-         o layout. Substituir pela lista real e pelas fotos reais quando
-         chegarem. As fotos se repetem de propósito (placeholder).
+         Cardápio real do Petrocerva Gastrobar.
+         Categorias em tópicos que abrem e fecham. A primeira já vem aberta.
+         Itens com "★" são os queridinhos da casa.
          ==================================================================== -->
 
-    <!-- PRATOS -->
+    <!-- CALDINHOS -->
     <section class="categoria" data-categoria>
       <h2 class="categoria__titulo">
-        <button type="button" class="categoria__botao" aria-expanded="true" aria-controls="cat-pratos">
+        <button type="button" class="categoria__botao" aria-expanded="true" aria-controls="cat-caldinhos">
+          <span class="categoria__icone" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 11h16a8 8 0 0 1-16 0z" />
+              <path d="M7.5 8c0-1.4 1-1.9 1-3M12 8c0-1.4 1-1.9 1-3M16.5 8c0-1.4 1-1.9 1-3" />
+            </svg>
+          </span>
+          <span class="categoria__nome">Caldinhos</span>
+          <svg class="categoria__seta" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </button>
+      </h2>
+      <div class="categoria__corpo" id="cat-caldinhos">
+        <ul class="itens">
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Feijão <span class="item__estrela" role="img" aria-label="queridinho da casa">★</span></span>
+              <span class="item__preco">R$ 10</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Feijoada</span>
+              <span class="item__preco">R$ 11</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Marisco</span>
+              <span class="item__preco">R$ 11</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Camarão</span>
+              <span class="item__preco">R$ 12</span>
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PETISCOS -->
+    <section class="categoria" data-categoria>
+      <h2 class="categoria__titulo">
+        <button type="button" class="categoria__botao" aria-expanded="false" aria-controls="cat-petiscos">
           <span class="categoria__icone" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
               stroke-linecap="round" stroke-linejoin="round">
@@ -81,58 +144,433 @@
               <circle cx="12" cy="12" r="3.25" />
             </svg>
           </span>
-          <span class="categoria__nome">Pratos</span>
+          <span class="categoria__nome">Petiscos</span>
           <svg class="categoria__seta" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
             stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M6 9l6 6 6-6" />
           </svg>
         </button>
       </h2>
-      <div class="categoria__corpo" id="cat-pratos">
+      <div class="categoria__corpo" id="cat-petiscos" hidden>
         <ul class="itens">
           <li class="item">
-            <img class="item__foto" src="src/img/cardapio-prato-02.jpg" alt="" width="800" height="800" loading="lazy"
-              decoding="async">
-            <div class="item__corpo">
-              <p class="item__linha">
-                <span class="item__nome">Isca de frango à milanesa</span>
-                <span class="item__preco">R$ 32</span>
-              </p>
-              <p class="item__descricao">Tiras de peito empanadas na hora, com molho da casa.</p>
-            </div>
+            <p class="item__linha">
+              <span class="item__nome">Maminha Argentina</span>
+              <span class="item__preco">R$ 47</span>
+            </p>
+            <p class="item__descricao">Na manteiga, com fritas.</p>
           </li>
           <li class="item">
-            <img class="item__foto" src="src/img/cardapio-prato-04.jpg" alt="" width="800" height="800" loading="lazy"
-              decoding="async">
-            <div class="item__corpo">
-              <p class="item__linha">
-                <span class="item__nome">Filé de tilápia com ervas</span>
-                <span class="item__preco">R$ 44</span>
-              </p>
-              <p class="item__descricao">Grelhado, com arroz de alho e legumes salteados.</p>
-            </div>
+            <p class="item__linha">
+              <span class="item__nome">Coração</span>
+              <span class="item__preco">R$ 33</span>
+            </p>
+            <p class="item__descricao">Na manteiga, com farofa.</p>
           </li>
           <li class="item">
-            <img class="item__foto" src="src/img/cardapio-prato-01.jpg" alt="" width="800" height="800" loading="lazy"
-              decoding="async">
-            <div class="item__corpo">
-              <p class="item__linha">
-                <span class="item__nome">Escondidinho de carne seca</span>
-                <span class="item__preco">R$ 38</span>
-              </p>
-              <p class="item__descricao">Purê de mandioca gratinado com carne seca desfiada.</p>
-            </div>
+            <p class="item__linha">
+              <span class="item__nome">Frango Crocante <span class="item__estrela" role="img" aria-label="queridinho da casa">★</span></span>
+              <span class="item__preco">R$ 38</span>
+            </p>
           </li>
           <li class="item">
-            <img class="item__foto" src="src/img/cardapio-prato-02.jpg" alt="" width="800" height="800" loading="lazy"
-              decoding="async">
-            <div class="item__corpo">
-              <p class="item__linha">
-                <span class="item__nome">Bolinho de bacalhau (8 un.)</span>
-                <span class="item__preco">R$ 42</span>
-              </p>
-              <p class="item__descricao">Dourado por fora, macio por dentro, com limão.</p>
-            </div>
+            <p class="item__linha">
+              <span class="item__nome">Iscas de Carne</span>
+              <span class="item__preco">R$ 43</span>
+            </p>
+            <p class="item__descricao">Acebolada, com fritas.</p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Panceta</span>
+              <span class="item__preco">R$ 36</span>
+            </p>
+            <p class="item__descricao">Barriga suína crocante.</p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Cupim</span>
+              <span class="item__preco">R$ 40</span>
+            </p>
+            <p class="item__descricao">Com molho especial e fritas.</p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Carne de Sol <span class="item__estrela" role="img" aria-label="queridinho da casa">★</span></span>
+              <span class="item__preco">R$ 42</span>
+            </p>
+            <p class="item__descricao">Com queijo coalho e fritas.</p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Costelinha</span>
+              <span class="item__preco">R$ 41</span>
+            </p>
+            <p class="item__descricao">Barbecue e fritas.</p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Linguiça</span>
+              <span class="item__preco">R$ 32</span>
+            </p>
+            <p class="item__descricao">Recheada com mussarela.</p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Tulipas</span>
+              <span class="item__preco">R$ 37</span>
+            </p>
+            <p class="item__descricao">Levemente empanadas.</p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Calabresa</span>
+              <span class="item__preco">R$ 32</span>
+            </p>
+            <p class="item__descricao">Calabresa acebolada com fritas.</p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Camarão Crocante <span class="item__estrela" role="img" aria-label="queridinho da casa">★</span></span>
+              <span class="item__preco">R$ 47</span>
+            </p>
+            <p class="item__descricao">Filé de camarão empanado, com fritas.</p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Peixe</span>
+              <span class="item__preco">R$ 42</span>
+            </p>
+            <p class="item__descricao">Filé de peixe empanado, com fritas.</p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Picanha Uruguaia</span>
+              <span class="item__preco">R$ 55</span>
+            </p>
+            <p class="item__descricao">Acebolada com fritas.</p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Camarão <span class="item__estrela" role="img" aria-label="queridinho da casa">★</span></span>
+              <span class="item__preco">R$ 38</span>
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ENTRADAS -->
+    <section class="categoria" data-categoria>
+      <h2 class="categoria__titulo">
+        <button type="button" class="categoria__botao" aria-expanded="false" aria-controls="cat-entradas">
+          <span class="categoria__icone" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 9h14l-1.2 9.3a2 2 0 0 1-2 1.7H8.2a2 2 0 0 1-2-1.7z" />
+              <path d="M9 9 8 4M12.5 9V3.5M16 9l1-4.5" />
+            </svg>
+          </span>
+          <span class="categoria__nome">Entradas</span>
+          <svg class="categoria__seta" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </button>
+      </h2>
+      <div class="categoria__corpo" id="cat-entradas" hidden>
+        <ul class="itens">
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Pão de Alho Tradicional</span>
+              <span class="item__preco">R$ 10</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Pão de Alho de Charque</span>
+              <span class="item__preco">R$ 12</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Fritas Simples</span>
+              <span class="item__preco">R$ 13</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Fritas Especial</span>
+              <span class="item__preco">R$ 19</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Escondidinho de Cupim <span class="item__estrela" role="img" aria-label="queridinho da casa">★</span></span>
+              <span class="item__preco">R$ 16</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Pastel de Carne</span>
+              <span class="item__preco">R$ 20</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Pastel de Frango</span>
+              <span class="item__preco">R$ 22</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Pastel de Camarão</span>
+              <span class="item__preco">R$ 27</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Pastel de Costela <span class="item__estrela" role="img" aria-label="queridinho da casa">★</span></span>
+              <span class="item__preco">R$ 25</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Bolinho de Charque</span>
+              <span class="item__preco">R$ 24</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Bolinho de Bacalhau</span>
+              <span class="item__preco">R$ 24</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Mini Coxinhas</span>
+              <span class="item__preco">R$ 23</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Queijo Empanado em Cubos</span>
+              <span class="item__preco">R$ 26</span>
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- BEBIDAS ALCOÓLICAS -->
+    <section class="categoria" data-categoria>
+      <h2 class="categoria__titulo">
+        <button type="button" class="categoria__botao" aria-expanded="false" aria-controls="cat-alcoolicas">
+          <span class="categoria__icone" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 6h9v13H6z" />
+              <path d="M15 8.5h2.5a2.5 2.5 0 0 1 0 5H15" />
+              <path d="M9 9.5v6M12 9.5v6" />
+            </svg>
+          </span>
+          <span class="categoria__nome">Bebidas Alcoólicas</span>
+          <svg class="categoria__seta" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </button>
+      </h2>
+      <div class="categoria__corpo" id="cat-alcoolicas" hidden>
+        <ul class="itens">
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Original <span class="item__estrela" role="img" aria-label="queridinho da casa">★</span></span>
+              <span class="item__preco">R$ 13</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Brahma Chopp</span>
+              <span class="item__preco">R$ 12</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Petra</span>
+              <span class="item__preco">R$ 11</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Black Princess</span>
+              <span class="item__preco">R$ 13</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Budweiser</span>
+              <span class="item__preco">R$ 13</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Spaten</span>
+              <span class="item__preco">R$ 15</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Stella Artois</span>
+              <span class="item__preco">R$ 15</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Heineken <span class="item__estrela" role="img" aria-label="queridinho da casa">★</span></span>
+              <span class="item__preco">R$ 17</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Cabaré Ice</span>
+              <span class="item__preco">R$ 10</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Skol Beats</span>
+              <span class="item__preco">R$ 12</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Chopp de Vinho</span>
+              <span class="item__preco">R$ 12</span>
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- BALDES DE CERVEJAS -->
+    <section class="categoria" data-categoria>
+      <h2 class="categoria__titulo">
+        <button type="button" class="categoria__botao" aria-expanded="false" aria-controls="cat-baldes">
+          <span class="categoria__icone" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 8h14l-1.4 10.4a2 2 0 0 1-2 1.6H8.4a2 2 0 0 1-2-1.6z" />
+              <path d="M4 8h16" />
+              <path d="M9 5.5 12 4l3 1.5" />
+            </svg>
+          </span>
+          <span class="categoria__nome">Baldes de Cervejas <small class="categoria__nota">5 unidades · 600&nbsp;ml</small></span>
+          <svg class="categoria__seta" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </button>
+      </h2>
+      <div class="categoria__corpo" id="cat-baldes" hidden>
+        <ul class="itens">
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Balde Original</span>
+              <span class="item__preco">R$ 63</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Balde Brahma Chopp</span>
+              <span class="item__preco">R$ 58</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Balde Petra</span>
+              <span class="item__preco">R$ 53</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Balde Black Princess</span>
+              <span class="item__preco">R$ 58</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Balde Budweiser</span>
+              <span class="item__preco">R$ 63</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Balde Spaten</span>
+              <span class="item__preco">R$ 68</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Balde Stella Artois</span>
+              <span class="item__preco">R$ 73</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Balde Heineken</span>
+              <span class="item__preco">R$ 83</span>
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- WISKIES -->
+    <section class="categoria" data-categoria>
+      <h2 class="categoria__titulo">
+        <button type="button" class="categoria__botao" aria-expanded="false" aria-controls="cat-wiskies">
+          <span class="categoria__icone" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 5h10l-1 7.5a3 3 0 0 1-3 2.6h-2a3 3 0 0 1-3-2.6z" />
+              <path d="M8 10h8" />
+              <path d="M12 15.1V19" />
+              <path d="M8.5 19h7" />
+            </svg>
+          </span>
+          <span class="categoria__nome">Wiskies <small class="categoria__nota">dose / litro</small></span>
+          <svg class="categoria__seta" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </button>
+      </h2>
+      <div class="categoria__corpo" id="cat-wiskies" hidden>
+        <ul class="itens">
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Black White</span>
+              <span class="item__preco">R$ 8 / 90</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Johnnie Red</span>
+              <span class="item__preco">R$ 10 / 150</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Chivas Regal</span>
+              <span class="item__preco">R$ 14 / 180</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Old Parr</span>
+              <span class="item__preco">R$ 15 / 193</span>
+            </p>
           </li>
         </ul>
       </div>
@@ -145,9 +583,10 @@
           <span class="categoria__icone" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
               stroke-linecap="round" stroke-linejoin="round">
-              <path d="M6 4h12l-1.6 8.6a4 4 0 0 1-3.9 3.3h-1a4 4 0 0 1-3.9-3.3z" />
-              <path d="M12 15.9V20" />
-              <path d="M8.5 20h7" />
+              <path d="M5 5h14l-7 8z" />
+              <path d="M12 13v6" />
+              <path d="M8.5 19h7" />
+              <path d="m15 6 3-2" />
             </svg>
           </span>
           <span class="categoria__nome">Drinks</span>
@@ -160,218 +599,376 @@
       <div class="categoria__corpo" id="cat-drinks" hidden>
         <ul class="itens">
           <li class="item">
-            <img class="item__foto" src="src/img/cardapio-drink-01.jpg" alt="" width="800" height="800" loading="lazy"
-              decoding="async">
-            <div class="item__corpo">
-              <p class="item__linha">
-                <span class="item__nome">Caipirinha da casa</span>
-                <span class="item__preco">R$ 22</span>
-              </p>
-              <p class="item__descricao">Cachaça artesanal, limão-taiti e açúcar.</p>
-            </div>
+            <p class="item__linha">
+              <span class="item__nome">Flamejante</span>
+              <span class="item__preco">R$ 10</span>
+            </p>
+            <p class="item__descricao">Monin, vodka ou cachaça, fogo.</p>
           </li>
           <li class="item">
-            <img class="item__foto" src="src/img/cardapio-drink-01.jpg" alt="" width="800" height="800" loading="lazy"
-              decoding="async">
-            <div class="item__corpo">
-              <p class="item__linha">
-                <span class="item__nome">Gin-tônica com especiarias</span>
-                <span class="item__preco">R$ 28</span>
-              </p>
-              <p class="item__descricao">Gin, água tônica, zimbro e limão-siciliano.</p>
-            </div>
+            <p class="item__linha">
+              <span class="item__nome">Caipirinha <span class="item__estrela" role="img" aria-label="queridinho da casa">★</span></span>
+              <span class="item__preco">R$ 10</span>
+            </p>
+            <p class="item__descricao">Cachaça e limão.</p>
           </li>
           <li class="item">
-            <img class="item__foto" src="src/img/cardapio-drink-01.jpg" alt="" width="800" height="800" loading="lazy"
-              decoding="async">
-            <div class="item__corpo">
-              <p class="item__linha">
-                <span class="item__nome">Chope pilsen 300 ml</span>
-                <span class="item__preco">R$ 12</span>
-              </p>
-              <p class="item__descricao">Puxado na pressão certa, sempre gelado.</p>
-            </div>
+            <p class="item__linha">
+              <span class="item__nome">Caipirosca</span>
+              <span class="item__preco">R$ 11</span>
+            </p>
+            <p class="item__descricao">Vodka e limão.</p>
           </li>
           <li class="item">
-            <img class="item__foto" src="src/img/cardapio-drink-01.jpg" alt="" width="800" height="800" loading="lazy"
-              decoding="async">
-            <div class="item__corpo">
-              <p class="item__linha">
-                <span class="item__nome">Suco natural da fruta</span>
-                <span class="item__preco">R$ 10</span>
-              </p>
-              <p class="item__descricao">Copo de 400 ml, sabores da estação.</p>
-            </div>
+            <p class="item__linha">
+              <span class="item__nome">Experience Red <span class="item__estrela" role="img" aria-label="queridinho da casa">★</span></span>
+              <span class="item__preco">R$ 22</span>
+            </p>
+            <p class="item__descricao">Morango, limão, grenadine e vodka.</p>
           </li>
           <li class="item">
-            <img class="item__foto" src="src/img/cardapio-drink-01.jpg" alt="" width="800" height="800" loading="lazy"
-              decoding="async">
-            <div class="item__corpo">
-              <p class="item__linha">
-                <span class="item__nome">Refrigerante lata</span>
-                <span class="item__preco">R$ 7</span>
-              </p>
-              <p class="item__descricao">Diversos sabores.</p>
-            </div>
+            <p class="item__linha">
+              <span class="item__nome">Soda Italiana</span>
+              <span class="item__preco">R$ 15</span>
+            </p>
+            <p class="item__descricao">Xarope e soda.</p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Caipifruta</span>
+              <span class="item__preco">R$ 15</span>
+            </p>
+            <p class="item__descricao">Vodka ou cachaça e fruta.</p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Sex On The Beach</span>
+              <span class="item__preco">consulte</span>
+            </p>
+            <p class="item__descricao">Vodka, suco de laranja e grenadine.</p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Piña Colada <span class="item__estrela" role="img" aria-label="queridinho da casa">★</span></span>
+              <span class="item__preco">R$ 20</span>
+            </p>
+            <p class="item__descricao">Rum, abacaxi, leite de coco e leite condensado.</p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Nevada</span>
+              <span class="item__preco">R$ 24</span>
+            </p>
+            <p class="item__descricao">Limão, leite condensado e vodka.</p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Lagoa Azul</span>
+              <span class="item__preco">R$ 18</span>
+            </p>
+            <p class="item__descricao">Gin, curaçau blue e soda.</p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Citrus Gin Freshe</span>
+              <span class="item__preco">R$ 19</span>
+            </p>
+            <p class="item__descricao">Gin, limão, xarope de limão siciliano e soda.</p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Space Lemon Gin</span>
+              <span class="item__preco">R$ 20</span>
+            </p>
+            <p class="item__descricao">Gin, curaçau blue, limão e schweppes.</p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Espanhola</span>
+              <span class="item__preco">R$ 20</span>
+            </p>
+            <p class="item__descricao">Vinho, fruta e leite condensado.</p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Gin Tônica</span>
+              <span class="item__preco">R$ 18</span>
+            </p>
+            <p class="item__descricao">Gin e água tônica.</p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Margarita</span>
+              <span class="item__preco">R$ 29</span>
+            </p>
+            <p class="item__descricao">Tequila, sumo de limão e xarope.</p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Melancita</span>
+              <span class="item__preco">R$ 25</span>
+            </p>
+            <p class="item__descricao">Gin e Red Bull de melancia.</p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Tropical Gin</span>
+              <span class="item__preco">R$ 26</span>
+            </p>
+            <p class="item__descricao">Gin e Red Bull tropical.</p>
           </li>
         </ul>
       </div>
     </section>
 
-    <!-- PORÇÕES -->
+    <!-- BEBIDAS QUENTES (DOSES) -->
     <section class="categoria" data-categoria>
       <h2 class="categoria__titulo">
-        <button type="button" class="categoria__botao" aria-expanded="false" aria-controls="cat-porcoes">
+        <button type="button" class="categoria__botao" aria-expanded="false" aria-controls="cat-quentes">
           <span class="categoria__icone" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
               stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 9h14l-1.2 9.3a2 2 0 0 1-2 1.7H8.2a2 2 0 0 1-2-1.7z" />
-              <path d="M9 9 8 4M12.5 9V3.5M16 9l1-4.5" />
+              <path d="M5 10h11v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z" />
+              <path d="M16 11h2.5a2 2 0 0 1 0 4H16" />
+              <path d="M8 6c0-1 1-1.4 1-2.5M11.5 6c0-1 1-1.4 1-2.5" />
             </svg>
           </span>
-          <span class="categoria__nome">Porções</span>
+          <span class="categoria__nome">Bebidas Quentes <small class="categoria__nota">doses</small></span>
           <svg class="categoria__seta" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
             stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M6 9l6 6 6-6" />
           </svg>
         </button>
       </h2>
-      <div class="categoria__corpo" id="cat-porcoes" hidden>
+      <div class="categoria__corpo" id="cat-quentes" hidden>
         <ul class="itens">
           <li class="item">
-            <img class="item__foto" src="src/img/cardapio-prato-01.jpg" alt="" width="800" height="800" loading="lazy"
-              decoding="async">
-            <div class="item__corpo">
-              <p class="item__linha">
-                <span class="item__nome">Batata frita com cheddar e bacon</span>
-                <span class="item__preco">R$ 34</span>
-              </p>
-              <p class="item__descricao">Porção generosa, cheddar cremoso e bacon em cubos.</p>
-            </div>
+            <p class="item__linha">
+              <span class="item__nome">Pitu</span>
+              <span class="item__preco">R$ 2 dose · R$ 6 quartinho</span>
+            </p>
           </li>
           <li class="item">
-            <img class="item__foto" src="src/img/cardapio-prato-04.jpg" alt="" width="800" height="800" loading="lazy"
-              decoding="async">
-            <div class="item__corpo">
-              <p class="item__linha">
-                <span class="item__nome">Linguiça artesanal acebolada</span>
-                <span class="item__preco">R$ 36</span>
-              </p>
-              <p class="item__descricao">Na chapa, com cebola caramelizada e pão tostado.</p>
-            </div>
+            <p class="item__linha">
+              <span class="item__nome">Pitu Gold</span>
+              <span class="item__preco">R$ 6 dose</span>
+            </p>
           </li>
           <li class="item">
-            <img class="item__foto" src="src/img/cardapio-prato-02.jpg" alt="" width="800" height="800" loading="lazy"
-              decoding="async">
-            <div class="item__corpo">
-              <p class="item__linha">
-                <span class="item__nome">Bolinho de feijoada (6 un.)</span>
-                <span class="item__preco">R$ 38</span>
-              </p>
-              <p class="item__descricao">Recheio de feijoada cremosa, com farofa e vinagrete.</p>
-            </div>
+            <p class="item__linha">
+              <span class="item__nome">Alcatrão</span>
+              <span class="item__preco">R$ 10 quartinho</span>
+            </p>
           </li>
           <li class="item">
-            <img class="item__foto" src="src/img/cardapio-prato-01.jpg" alt="" width="800" height="800" loading="lazy"
-              decoding="async">
-            <div class="item__corpo">
-              <p class="item__linha">
-                <span class="item__nome">Mandioca frita</span>
-                <span class="item__preco">R$ 26</span>
-              </p>
-              <p class="item__descricao">Crocante, com geleia de pimenta da casa.</p>
-            </div>
+            <p class="item__linha">
+              <span class="item__nome">Cachaça Cabaré</span>
+              <span class="item__preco">R$ 5 dose</span>
+            </p>
           </li>
           <li class="item">
-            <img class="item__foto" src="src/img/cardapio-prato-04.jpg" alt="" width="800" height="800" loading="lazy"
-              decoding="async">
-            <div class="item__corpo">
-              <p class="item__linha">
-                <span class="item__nome">Torresmo de rolo</span>
-                <span class="item__preco">R$ 30</span>
-              </p>
-              <p class="item__descricao">Pururuca na hora, com limão e melado.</p>
-            </div>
+            <p class="item__linha">
+              <span class="item__nome">Licor 43</span>
+              <span class="item__preco">R$ 17 dose</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Campari</span>
+              <span class="item__preco">R$ 8 dose</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Bananazinha <span class="item__estrela" role="img" aria-label="queridinho da casa">★</span></span>
+              <span class="item__preco">R$ 9 dose</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Tequila</span>
+              <span class="item__preco">R$ 14 dose</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Ballena <span class="item__estrela" role="img" aria-label="queridinho da casa">★</span></span>
+              <span class="item__preco">R$ 16 dose</span>
+            </p>
           </li>
         </ul>
       </div>
     </section>
 
-    <!-- SOBREMESAS -->
+    <!-- BEBIDAS NÃO-ALCOÓLICAS -->
     <section class="categoria" data-categoria>
       <h2 class="categoria__titulo">
-        <button type="button" class="categoria__botao" aria-expanded="false" aria-controls="cat-sobremesas">
+        <button type="button" class="categoria__botao" aria-expanded="false" aria-controls="cat-nao-alcoolicas">
           <span class="categoria__icone" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
               stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 20h16" />
-              <path d="M6.5 20 9.5 8.5h5L17.5 20" />
-              <path d="M9 9.5c.5-1.7 1.6-2.5 3-2.5s2.5.8 3 2.5" />
+              <path d="M10 3h4v2.5l1.6 3.2a3 3 0 0 1 .4 1.5V19a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-8.8a3 3 0 0 1 .4-1.5L10 5.5z" />
+              <path d="M8 13h8" />
             </svg>
           </span>
-          <span class="categoria__nome">Sobremesas</span>
+          <span class="categoria__nome">Bebidas Não-alcoólicas</span>
           <svg class="categoria__seta" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
             stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M6 9l6 6 6-6" />
           </svg>
         </button>
       </h2>
-      <div class="categoria__corpo" id="cat-sobremesas" hidden>
+      <div class="categoria__corpo" id="cat-nao-alcoolicas" hidden>
         <ul class="itens">
           <li class="item">
-            <img class="item__foto" src="src/img/cardapio-prato-04.jpg" alt="" width="800" height="800" loading="lazy"
-              decoding="async">
-            <div class="item__corpo">
-              <p class="item__linha">
-                <span class="item__nome">Petit gâteau</span>
-                <span class="item__preco">R$ 24</span>
-              </p>
-              <p class="item__descricao">Bolo quente de chocolate com sorvete de creme.</p>
-            </div>
+            <p class="item__linha">
+              <span class="item__nome">Refrigerante Litro</span>
+              <span class="item__preco">R$ 10</span>
+            </p>
           </li>
           <li class="item">
-            <img class="item__foto" src="src/img/cardapio-prato-01.jpg" alt="" width="800" height="800" loading="lazy"
-              decoding="async">
-            <div class="item__corpo">
-              <p class="item__linha">
-                <span class="item__nome">Pudim de leite</span>
-                <span class="item__preco">R$ 16</span>
-              </p>
-              <p class="item__descricao">Tradicional, com calda de caramelo.</p>
-            </div>
+            <p class="item__linha">
+              <span class="item__nome">Refrigerante Lata</span>
+              <span class="item__preco">R$ 6</span>
+            </p>
           </li>
           <li class="item">
-            <img class="item__foto" src="src/img/cardapio-prato-02.jpg" alt="" width="800" height="800" loading="lazy"
-              decoding="async">
-            <div class="item__corpo">
-              <p class="item__linha">
-                <span class="item__nome">Brownie com doce de leite</span>
-                <span class="item__preco">R$ 20</span>
-              </p>
-              <p class="item__descricao">Servido morno, com sorvete.</p>
-            </div>
+            <p class="item__linha">
+              <span class="item__nome">H2O</span>
+              <span class="item__preco">R$ 8</span>
+            </p>
           </li>
           <li class="item">
-            <img class="item__foto" src="src/img/cardapio-prato-04.jpg" alt="" width="800" height="800" loading="lazy"
-              decoding="async">
-            <div class="item__corpo">
-              <p class="item__linha">
-                <span class="item__nome">Mousse de maracujá</span>
-                <span class="item__preco">R$ 14</span>
-              </p>
-              <p class="item__descricao">Cremosa, com calda da fruta.</p>
-            </div>
+            <p class="item__linha">
+              <span class="item__nome">Água</span>
+              <span class="item__preco">R$ 3</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Água com Gás</span>
+              <span class="item__preco">R$ 5</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Água Tônica</span>
+              <span class="item__preco">R$ 5</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Água de Coco</span>
+              <span class="item__preco">R$ 11</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Schweppes</span>
+              <span class="item__preco">R$ 6</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Red Bull</span>
+              <span class="item__preco">R$ 15</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">TNT</span>
+              <span class="item__preco">R$ 10</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Gelo de Coco</span>
+              <span class="item__preco">R$ 9</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Heineken Zero</span>
+              <span class="item__preco">R$ 12</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Budweiser Zero</span>
+              <span class="item__preco">R$ 10</span>
+            </p>
           </li>
         </ul>
       </div>
     </section>
 
-    <!-- FIM DO CONTEÚDO PROVISÓRIO -->
+    <!-- SUCOS -->
+    <section class="categoria" data-categoria>
+      <h2 class="categoria__titulo">
+        <button type="button" class="categoria__botao" aria-expanded="false" aria-controls="cat-sucos">
+          <span class="categoria__icone" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 8h10l-1 11a2 2 0 0 1-2 1.8h-4A2 2 0 0 1 8 19z" />
+              <path d="M7.5 8 7 4h9l-.5 4" />
+              <path d="m14 4 3-1.5" />
+            </svg>
+          </span>
+          <span class="categoria__nome">Sucos <small class="categoria__nota">copo / jarra</small></span>
+          <svg class="categoria__seta" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </button>
+      </h2>
+      <div class="categoria__corpo" id="cat-sucos" hidden>
+        <ul class="itens">
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Uva</span>
+              <span class="item__preco">R$ 7 / 15</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Cajá</span>
+              <span class="item__preco">R$ 7 / 15</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Caju</span>
+              <span class="item__preco">R$ 7 / 15</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Maracujá</span>
+              <span class="item__preco">R$ 8 / 16</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Morango</span>
+              <span class="item__preco">R$ 8 / 17</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Limão</span>
+              <span class="item__preco">R$ 8 / 17</span>
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
 
   </main>
 
   <footer class="cardapio-rodape">
     <p class="cardapio-rodape__endereco">Rua Veneza, 1039 - Centro, Paulista-PE. Fins de semana, a partir das 18h.</p>
+    <p class="cardapio-rodape__wifi">Wi-Fi: <strong>Petrocerva Gastrobar</strong> &middot; senha <strong>petrocerva2022</strong></p>
+    <p class="cardapio-rodape__couvert">Em dias de som ao vivo cobramos couvert artístico.</p>
     <p><a href="https://wa.me/5581981782875" target="_blank" rel="noopener noreferrer">WhatsApp: (81) 98178-2875</a></p>
     <a class="cardapio-rodape__voltar" href="index.html">Voltar ao site</a>
   </footer>
