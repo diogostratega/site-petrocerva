@@ -299,8 +299,23 @@
               </ul>
             </div>
 
-            <div class="carrossel-programacao__progresso" aria-hidden="true">
-              <span class="carrossel-programacao__progresso-barra" id="barra-progresso-autoplay"></span>
+            <div class="carrossel-programacao__controles">
+              <button type="button" class="carrossel-programacao__botao-controle" id="botao-controle-automatico"
+                aria-label="Pausar apresentação automática">
+                <svg class="icone-pausar" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"
+                  aria-hidden="true">
+                  <rect x="6" y="5" width="4" height="14" rx="1" />
+                  <rect x="14" y="5" width="4" height="14" rx="1" />
+                </svg>
+                <svg class="icone-retomar" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"
+                  aria-hidden="true" hidden>
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </button>
+
+              <div class="carrossel-programacao__progresso" aria-hidden="true">
+                <span class="carrossel-programacao__progresso-barra" id="barra-progresso-autoplay"></span>
+              </div>
             </div>
 
             <p class="carrossel-programacao__anuncio" id="anuncio-carrossel" role="status" aria-live="polite"></p>
@@ -538,6 +553,13 @@
                 href="https://wa.me/5581981782875?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Petrocerva%20e%20quero%20saber%20mais%20sobre%20a%20programa%C3%A7%C3%A3o%20deste%20fim%20de%20semana."
                 target="_blank" rel="noopener noreferrer">Tirar dúvida pelo WhatsApp</a>
             </div>
+          </div>
+
+          <div class="localizacao__mapa">
+            <iframe
+              src="https://www.google.com/maps?q=Rua+Veneza,+1039+-+Centro,+Paulista+-+PE&output=embed"
+              title="Mapa da localização do Petrocerva Gastrobar na Rua Veneza, 1039 - Centro, Paulista-PE"
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
           </div>
         </div>
       </div>

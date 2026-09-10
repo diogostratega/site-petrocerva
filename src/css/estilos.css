@@ -10,6 +10,9 @@
   /* Acentos levemente dessaturados (~10%) para assentarem melhor nos neutros. */
   --cor-verde-vibrante: #08a069;
   --cor-dourado-marca: #ebb03f;
+  /* Dourado escurecido para texto pequeno (eyebrows) sobre fundo claro: o
+     --cor-dourado-marca sobre o creme fica ~1,8:1; este dá ~5,5:1 (WCAG AA). */
+  --cor-dourado-escuro: #8a5b16;
   --cor-creme: #fff8e7;
   --cor-texto-escuro: #102019;
   --cor-texto-claro: #f8fff9;
@@ -25,6 +28,9 @@
   --cor-superficie: var(--cor-texto-claro);
   --cor-texto-titulo: var(--cor-verde-profundo);
   --cor-texto-acento-verde: var(--cor-verde-marca);
+  /* Cor das eyebrows das seções de fundo claro. No escuro essas seções ficam
+     com fundo escuro, então volta ao dourado vibrante (o escuro sumiria). */
+  --cor-texto-eyebrow: var(--cor-dourado-escuro);
   /* Texto sobre botões dourados: precisa ser sempre escuro, nos dois temas.
      Fixo de propósito — não pode acompanhar --cor-texto-escuro, que fica claro
      no modo escuro (era isso que deixava o CTA ilegível no amarelo). */
@@ -67,6 +73,7 @@
 
   --cor-texto-titulo: var(--cor-texto-claro);
   --cor-texto-acento-verde: var(--cor-verde-vibrante);
+  --cor-texto-eyebrow: var(--cor-dourado-marca);
 
   /* --cor-texto-sobre-destaque não é redefinido aqui: é fixo (verde profundo)
      para o texto continuar escuro e legível sobre os botões dourados. */
@@ -638,6 +645,11 @@ h3 {
   display: none;
 }
 
+/* Botão de pausar/retomar só faz sentido com o autoplay do JS. */
+.carrossel-programacao__controles {
+  display: none;
+}
+
 /* Com JavaScript ativo: vira carrossel deslizante de um slide por vez. */
 .js .carrossel-programacao__selecao-dia {
   display: block;
@@ -669,6 +681,13 @@ h3 {
 
 .js .carrossel-programacao__progresso {
   display: flex;
+}
+
+.js .carrossel-programacao__controles {
+  display: flex;
+  align-items: center;
+  gap: var(--espacamento-sm);
+  margin-top: var(--espacamento-md);
 }
 
 .js .atracao__moldura-imagem .carrossel-programacao__botao-seta {
@@ -756,11 +775,34 @@ h3 {
 }
 
 .carrossel-programacao__progresso {
+  flex: 1;
   height: 0.1875rem;
   background-color: var(--cor-borda-suave);
   border-radius: 999px;
-  margin-top: var(--espacamento-md);
   overflow: hidden;
+}
+
+.carrossel-programacao__botao-controle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  color: var(--cor-texto-titulo);
+  background-color: var(--cor-creme-suave);
+  transition: background-color var(--transicao-rapida), color var(--transicao-rapida),
+    transform var(--transicao-rapida);
+}
+
+.carrossel-programacao__botao-controle:hover {
+  background-color: var(--cor-dourado-marca);
+  color: var(--cor-verde-profundo);
+}
+
+.carrossel-programacao__botao-controle:active {
+  transform: scale(0.92);
 }
 
 .carrossel-programacao__progresso-barra {
@@ -896,7 +938,7 @@ h3 {
 .localizacao__eyebrow {
   font-size: 0.8125rem;
   font-weight: 700;
-  color: var(--cor-dourado-marca);
+  color: var(--cor-texto-eyebrow);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   margin-bottom: var(--espacamento-xs);
@@ -968,6 +1010,8 @@ h3 {
   background-color: var(--cor-verde-profundo);
 }
 
+/* Fundo verde-profundo: aqui o dourado vibrante tem contraste de sobra, não
+   precisa da variante escura usada nas seções de fundo claro. */
 .galeria .galeria__eyebrow {
   color: var(--cor-dourado-marca);
 }
@@ -1187,6 +1231,7 @@ h3 {
   color: var(--cor-texto-claro);
 }
 
+/* Fundo verde-profundo: mantém o dourado vibrante (ver .galeria__eyebrow). */
 .sobre .sobre__eyebrow {
   color: var(--cor-dourado-marca);
 }
@@ -1209,6 +1254,29 @@ h3 {
 .localizacao {
   padding-block: var(--espacamento-3xl);
   background-color: var(--cor-creme);
+}
+
+/* Mobile: informações e mapa empilhados. No desktop viram duas colunas
+   (ver responsivo.css). */
+.localizacao__grade {
+  display: grid;
+  gap: var(--espacamento-lg);
+}
+
+.localizacao__mapa {
+  min-height: 16rem;
+  overflow: hidden;
+  border: 1px solid var(--cor-borda-suave);
+  border-radius: var(--raio-borda-md);
+  background-color: var(--cor-verde-profundo-suave);
+}
+
+.localizacao__mapa iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  border: 0;
 }
 
 .localizacao__lista {

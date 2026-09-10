@@ -80,8 +80,9 @@
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .localizacao__informacoes {
-    max-width: 34rem;
+  .localizacao__grade {
+    grid-template-columns: minmax(0, 34rem) minmax(0, 1fr);
+    align-items: stretch;
   }
 
   .localizacao__botoes {

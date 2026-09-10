@@ -250,6 +250,7 @@ function inicializarCarrosselProgramacao() {
   );
   const barraDeProgresso = document.getElementById("barra-progresso-autoplay");
   const anuncioDoCarrossel = document.getElementById("anuncio-carrossel");
+  const botaoControleAutomatico = document.getElementById("botao-controle-automatico");
   const imagensFundoHero = Array.from(
     document.querySelectorAll(".hero__fundo-imagem")
   );
@@ -399,6 +400,26 @@ function inicializarCarrosselProgramacao() {
     barraDeProgresso.style.transform = "";
   }
 
+  // Botão de pausar/retomar a apresentação automática (WCAG 2.2.2): reflete no
+  // rótulo e no ícone se o autoplay está parado por escolha do usuário.
+  function atualizarBotaoControle() {
+    if (!botaoControleAutomatico) return;
+
+    const iconePausar = botaoControleAutomatico.querySelector(".icone-pausar");
+    const iconeRetomar = botaoControleAutomatico.querySelector(".icone-retomar");
+    const pausado = autoplayFoiPausadoPeloUsuario;
+
+    botaoControleAutomatico.setAttribute(
+      "aria-label",
+      pausado ? "Retomar apresentação automática" : "Pausar apresentação automática"
+    );
+
+    if (iconePausar && iconeRetomar) {
+      iconePausar.hidden = pausado;
+      iconeRetomar.hidden = !pausado;
+    }
+  }
+
   // Controles manuais dos dias.
   botoesDosDias.forEach((botao) => {
     botao.addEventListener("click", () => {
@@ -421,6 +442,20 @@ function inicializarCarrosselProgramacao() {
       reiniciarContagemDoCarrossel();
     });
   });
+
+  // Pausar / retomar a apresentação automática.
+  if (botaoControleAutomatico) {
+    botaoControleAutomatico.addEventListener("click", () => {
+      autoplayFoiPausadoPeloUsuario = !autoplayFoiPausadoPeloUsuario;
+      atualizarBotaoControle();
+
+      if (autoplayFoiPausadoPeloUsuario) {
+        pausarCarrosselAutomatico();
+      } else {
+        reiniciarContagemDoCarrossel();
+      }
+    });
+  }
 
   // Pausa ao passar o mouse.
   carrossel.addEventListener("mouseenter", pausarCarrosselAutomatico);
@@ -538,9 +573,11 @@ function inicializarCarrosselProgramacao() {
 
   // Estado inicial.
   exibirSlideDaProgramacao(0);
+  atualizarBotaoControle();
 
   if (prefereMovimentoReduzido) {
     autoplayFoiPausadoPeloUsuario = true;
+    atualizarBotaoControle();
   } else {
     iniciarCarrosselAutomatico();
   }
