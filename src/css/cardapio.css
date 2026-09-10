@@ -1,179 +1,187 @@
 /* ===================================================
    CARDAPIO.CSS
-   Página de acesso via QR Code na mesa: só o cardápio.
-   Reaproveita os tokens e componentes de estilos.css, sem paleta nova.
-   Prioridades: mobile-first, legibilidade a curta distância, alvos de
-   toque grandes, carga leve (sem tela de carregamento, sem animações).
+   Página do cardápio para acesso via QR Code na mesa.
+   Hero com a logo sobre uma foto da casa, faixa "Cardápio" e as categorias
+   em tópicos que abrem e fecham (Pratos, Porções, Drinks, Sobremesas).
+   Apenas tema claro. Reaproveita os tokens de estilos.css, sem paleta nova.
    =================================================== */
 
-/* A página é lida a distância de braço, num celular sobre a mesa e muitas
-   vezes com pouca luz: corpo um pouco maior que o do site principal. */
-.pagina-qr {
+.pagina-cardapio {
   font-size: 1.125rem;
+  background-color: var(--cor-creme);
 }
 
-.envoltorio {
+/* ===================================================
+   HERO: logo ao centro sobre uma foto, com véu verde
+   =================================================== */
+
+.cardapio-hero {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: clamp(11rem, 40vw, 16rem);
+  padding: var(--espacamento-xl) var(--espacamento-lg);
+  overflow: hidden;
+  background-color: var(--cor-verde-profundo);
+}
+
+.cardapio-hero__fundo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.cardapio-hero__fundo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Véu verde da marca: garante contraste da logo e do botão sobre a foto. */
+.cardapio-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgb(7 61 43 / 74%), rgb(7 61 43 / 88%));
+}
+
+.cardapio-hero__voltar {
+  position: absolute;
+  top: var(--espacamento-sm);
+  left: var(--espacamento-sm);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background-color: rgb(255 248 231 / 92%);
+  color: var(--cor-verde-profundo);
+  box-shadow: var(--sombra-card);
+  transition: transform var(--transicao-rapida);
+}
+
+.cardapio-hero__voltar:active {
+  transform: scale(0.94);
+}
+
+.cardapio-hero__marca {
+  position: relative;
+  z-index: 2;
+}
+
+.cardapio-hero__logo {
+  width: clamp(7rem, 30vw, 9.5rem);
+  height: auto;
+  object-fit: contain;
+}
+
+/* ===================================================
+   FAIXA "CARDÁPIO"
+   =================================================== */
+
+.cardapio-faixa {
+  padding: 0.85rem var(--espacamento-md);
+  background-color: var(--cor-verde-profundo);
+  text-align: center;
+}
+
+.cardapio-faixa__titulo {
+  font-size: clamp(1.1rem, 4.5vw, 1.4rem);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cor-texto-claro);
+}
+
+/* ===================================================
+   LISTA DE CATEGORIAS (tópicos que abrem/fecham)
+   =================================================== */
+
+.cardapio-lista {
   max-width: 44rem;
   margin-inline: auto;
-  padding-inline: var(--espacamento-md);
+  padding: var(--espacamento-lg) var(--espacamento-md) var(--espacamento-2xl);
+  display: grid;
+  gap: var(--espacamento-md);
 }
 
-/* ===================================================
-   TOPO ENXUTO
-   Só a marca (volta para a home) e o botão de tema. Sem navegação.
-   =================================================== */
-
-.topo-qr {
-  background-color: var(--cor-creme);
-  border-bottom: 1px solid var(--cor-borda-suave);
+.categoria {
+  border: 1px solid var(--cor-borda-suave);
+  border-radius: var(--raio-borda-md);
+  background-color: var(--cor-superficie);
+  overflow: hidden;
 }
 
-.topo-qr__conteudo {
+.categoria__titulo {
+  margin: 0;
+}
+
+.categoria__botao {
+  width: 100%;
   display: flex;
   align-items: center;
   gap: var(--espacamento-sm);
-  min-height: var(--altura-cabecalho);
+  min-height: 3.5rem;
+  padding: var(--espacamento-md);
+  text-align: left;
+  color: var(--cor-texto-titulo);
+  transition: background-color var(--transicao-rapida);
 }
 
-.topo-qr__marca {
+.categoria__botao:hover {
+  background-color: var(--cor-creme-suave);
+}
+
+.categoria__icone {
   display: flex;
-  align-items: center;
-  gap: var(--espacamento-sm);
+  flex-shrink: 0;
+  color: var(--cor-texto-acento-verde);
+}
+
+.categoria__nome {
+  flex: 1;
   min-width: 0;
-  margin-right: auto;
-}
-
-.topo-qr__logo {
-  width: 2.25rem;
-  height: 1.95rem;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-.topo-qr__marca-texto {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.1;
-  font-weight: 700;
   font-size: 1rem;
-  color: var(--cor-texto-titulo);
-  white-space: nowrap;
-}
-
-.topo-qr__marca-sub {
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--cor-texto-acento-verde);
 }
 
-.topo-qr__voltar {
+.categoria__seta {
   flex-shrink: 0;
-  padding: var(--espacamento-xs);
-  font-size: 0.875rem;
-  font-weight: 500;
   color: var(--cor-texto-acento-verde);
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
-  white-space: nowrap;
+  transition: transform var(--transicao-rapida);
 }
 
-/* ===================================================
-   CABEÇALHO DA PÁGINA
-   =================================================== */
-
-.qr-cabecalho {
-  padding-top: var(--espacamento-xl);
-  padding-bottom: var(--espacamento-lg);
+.categoria--aberta .categoria__seta {
+  transform: rotate(180deg);
 }
 
-.qr-cabecalho__titulo {
-  font-size: clamp(2rem, 8vw, 2.75rem);
-  color: var(--cor-texto-titulo);
-  margin-bottom: var(--espacamento-xs);
-}
-
-.qr-cabecalho__apoio {
-  max-width: 40ch;
-  color: var(--cor-texto-escuro);
-}
-
-/* ===================================================
-   SEÇÕES DO CARDÁPIO
-   =================================================== */
-
-.qr-secao {
-  padding-block: var(--espacamento-xl);
+.categoria__corpo {
+  padding: var(--espacamento-md);
   border-top: 1px solid var(--cor-borda-suave);
 }
 
-.menu-secao__titulo {
-  font-size: clamp(1.5rem, 6vw, 2rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--cor-texto-titulo);
-  margin-bottom: var(--espacamento-lg);
-}
+/* ===================================================
+   ITENS
+   =================================================== */
 
-/* --- Item em destaque: abre cada seção com foto grande --- */
-.menu-destaque {
-  display: grid;
-  gap: var(--espacamento-sm);
-  margin-bottom: var(--espacamento-xl);
-}
-
-.menu-destaque__foto {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  max-height: 20rem;
-  object-fit: cover;
-  border-radius: var(--raio-borda-md);
-  background-color: var(--cor-verde-profundo-suave);
-}
-
-.menu-destaque__linha {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--espacamento-sm);
-  margin-top: var(--espacamento-xs);
-}
-
-.menu-destaque__nome {
-  font-size: 1.375rem;
-  font-weight: 700;
-  line-height: 1.2;
-  color: var(--cor-texto-titulo);
-}
-
-.menu-destaque__preco {
-  flex-shrink: 0;
-  font-size: 1.125rem;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  color: var(--cor-texto-eyebrow);
-}
-
-.menu-destaque__descricao {
-  font-size: 1rem;
-  color: var(--cor-texto-escuro);
-}
-
-/* --- Demais itens: miniatura + texto, linha a linha --- */
-.menu-lista {
+.itens {
   display: grid;
   gap: var(--espacamento-lg);
 }
 
-.menu-item {
+.item {
   display: grid;
   grid-template-columns: 4.5rem 1fr;
   gap: var(--espacamento-md);
   align-items: start;
 }
 
-.menu-item__foto {
+.item__foto {
   width: 4.5rem;
   height: 4.5rem;
   object-fit: cover;
@@ -181,49 +189,48 @@
   background-color: var(--cor-verde-profundo-suave);
 }
 
-.menu-item__corpo {
+.item__corpo {
   min-width: 0;
 }
 
-.menu-item__linha {
+.item__linha {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: var(--espacamento-sm);
 }
 
-.menu-item__nome {
+.item__nome {
   font-size: 1.0625rem;
   font-weight: 700;
   line-height: 1.25;
   color: var(--cor-texto-titulo);
 }
 
-.menu-item__preco {
+.item__preco {
   flex-shrink: 0;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   color: var(--cor-texto-eyebrow);
 }
 
-.menu-item__descricao {
+.item__descricao {
   margin-top: 0.25rem;
   font-size: 0.9375rem;
   color: var(--cor-texto-escuro);
 }
 
-/* A partir de ~34rem: miniaturas maiores, texto do item um degrau acima. */
 @media (min-width: 34rem) {
-  .menu-item {
+  .item {
     grid-template-columns: 6rem 1fr;
   }
 
-  .menu-item__foto {
+  .item__foto {
     width: 6rem;
     height: 6rem;
   }
 
-  .menu-item__nome {
+  .item__nome {
     font-size: 1.125rem;
   }
 }
@@ -232,25 +239,26 @@
    RODAPÉ ENXUTO
    =================================================== */
 
-.rodape-qr {
+.cardapio-rodape {
+  max-width: 44rem;
+  margin-inline: auto;
   display: grid;
   gap: var(--espacamento-md);
-  margin-top: var(--espacamento-xl);
-  padding-block: var(--espacamento-xl);
+  padding: var(--espacamento-xl) var(--espacamento-md);
   border-top: 1px solid var(--cor-borda-suave);
   font-size: 1rem;
 }
 
-.rodape-qr__endereco {
+.cardapio-rodape__endereco {
   color: var(--cor-texto-escuro);
 }
 
-.rodape-qr a {
+.cardapio-rodape a {
   color: var(--cor-texto-acento-verde);
   font-weight: 500;
 }
 
-.rodape-qr__voltar {
+.cardapio-rodape__voltar {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -264,7 +272,6 @@
   text-align: center;
 }
 
-/* Feedback tátil de clique, igual ao do site principal. */
-.rodape-qr__voltar:active {
+.cardapio-rodape__voltar:active {
   transform: translateY(1px);
 }
