@@ -43,11 +43,11 @@
 
             <li class="carrossel__slide" data-dia="sexta" role="group" aria-roledescription="slide"
               aria-label="1 de 3" aria-hidden="false">
-              <div class="slide__figura">
+              <button type="button" class="slide__figura" data-ampliar aria-haspopup="dialog">
                 <img src="src/img/programacao-sex.webp"
                   alt="Cartaz do Muído de Vaquejada com Édson Vaqueiro, sexta-feira 11 de setembro às 20h30 no Petrocerva Gastrobar"
                   width="1080" height="1440" draggable="false" fetchpriority="high" decoding="async">
-              </div>
+              </button>
               <div class="slide__info">
                 <p class="slide__dia">Sexta-feira · 11 de setembro</p>
                 <p class="slide__evento">Muído de Vaquejada</p>
@@ -71,11 +71,11 @@
 
             <li class="carrossel__slide" data-dia="sabado" role="group" aria-roledescription="slide"
               aria-label="2 de 3" aria-hidden="true">
-              <div class="slide__figura">
+              <button type="button" class="slide__figura" data-ampliar aria-haspopup="dialog">
                 <img src="src/img/programacao-sab.webp"
                   alt="Cartaz do Arrocha Vanelly com Vanelly Alves, sábado 12 de setembro às 20h30 no Petrocerva Gastrobar"
                   width="1080" height="1440" draggable="false" loading="lazy" decoding="async">
-              </div>
+              </button>
               <div class="slide__info">
                 <p class="slide__dia">Sábado · 12 de setembro</p>
                 <p class="slide__evento">Arrocha Vanelly</p>
@@ -99,11 +99,11 @@
 
             <li class="carrossel__slide" data-dia="domingo" role="group" aria-roledescription="slide"
               aria-label="3 de 3" aria-hidden="true">
-              <div class="slide__figura">
+              <button type="button" class="slide__figura" data-ampliar aria-haspopup="dialog">
                 <img src="src/img/programacao-dom.webp"
                   alt="Cartaz do Pagodeou Petrocerva com o grupo Samba pra Boteco, domingo 13 de setembro às 18h30 no Petrocerva Gastrobar"
                   width="1080" height="1440" draggable="false" loading="lazy" decoding="async">
-              </div>
+              </button>
               <div class="slide__info">
                 <p class="slide__dia">Domingo · 13 de setembro</p>
                 <p class="slide__evento">Pagodeou Petrocerva</p>
@@ -154,6 +154,24 @@
     <p class="visualmente-oculto" data-anuncio role="status" aria-live="polite"></p>
 
   </div>
+
+  <dialog class="lightbox" id="prog-lightbox" aria-label="Flyer da programação ampliado">
+    <figure class="lightbox__figura">
+      <img class="lightbox__imagem" id="prog-lightbox-imagem" src="" alt="" draggable="false">
+      <button type="button" class="lightbox__fechar" id="prog-lightbox-fechar" aria-label="Fechar imagem ampliada">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 6 18 18M18 6 6 18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" />
+        </svg>
+      </button>
+      <p class="lightbox__dica" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M9 6 4 12l5 6M15 6l5 6-5 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+        Arraste para ver os outros dias
+      </p>
+    </figure>
+  </dialog>
 
   <script src="src/js/programacao.js" defer></script>
 </body>

@@ -91,6 +91,7 @@ body {
 }
 
 .carrossel__slide {
+  position: relative;
   flex: 0 0 100%;
   display: flex;
   flex-direction: column;
@@ -98,12 +99,18 @@ body {
   overflow: hidden;
 }
 
+/* O cartaz é um botão: toque nele abre o flyer em destaque (tela cheia). */
 .slide__figura {
   flex: 1;
   min-height: 0;
   display: grid;
   place-items: center;
-  padding: var(--espacamento-md);
+  width: 100%;
+  padding: var(--espacamento-md) var(--espacamento-md) 0;
+  background: none;
+  border: 0;
+  cursor: zoom-in;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .slide__figura img {
@@ -117,15 +124,30 @@ body {
   -webkit-user-drag: none;
 }
 
+/* Card de informações: sobe um pouco sobre o cartaz e fica levemente
+   translúcido, deixando ver a base do flyer por trás sem perder legibilidade. */
 .slide__info {
+  position: relative;
+  z-index: 1;
   flex-shrink: 0;
   display: grid;
   gap: 0.35rem;
-  padding: var(--espacamento-sm) var(--espacamento-md) var(--espacamento-md);
-  background-color: var(--cor-creme);
+  margin-top: -3.25rem;
+  padding: var(--espacamento-md) var(--espacamento-md) var(--espacamento-md);
+  background-color: color-mix(in srgb, var(--cor-creme) 88%, transparent);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   border-top: 1px solid var(--cor-borda-suave);
+  border-radius: var(--raio-borda-md) var(--raio-borda-md) 0 0;
   color: var(--cor-texto-escuro);
   text-align: center;
+}
+
+/* Sem backdrop-filter (Firefox antigo): compensa com mais opacidade. */
+@supports not ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+  .slide__info {
+    background-color: color-mix(in srgb, var(--cor-creme) 95%, transparent);
+  }
 }
 
 .slide__dia {
@@ -133,7 +155,7 @@ body {
   font-weight: 700;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  color: var(--cor-texto-eyebrow);
+  color: var(--cor-dourado-marca);
 }
 
 .slide__evento {
@@ -164,7 +186,7 @@ body {
   height: 0.5rem;
   margin-right: 0.4rem;
   border-radius: 50%;
-  background-color: var(--cor-dourado-escuro);
+  background-color: var(--cor-dourado-marca);
   vertical-align: middle;
 }
 
@@ -267,11 +289,15 @@ body {
 
   .slide__figura {
     flex: 0 0 44%;
+    padding: var(--espacamento-md);
   }
 
   .slide__info {
     flex: 1;
     align-content: center;
+    margin-top: 0;
+    border-top: 0;
+    border-radius: 0;
     text-align: left;
   }
 
@@ -287,5 +313,41 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .carrossel__trilho {
     transition: none;
+  }
+}
+
+/* ---- Destaque do flyer (lightbox): dica de arrastar entre os dias ---- */
+.lightbox__dica {
+  position: absolute;
+  left: 50%;
+  bottom: 0.85rem;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  background-color: rgb(7 61 43 / 62%);
+  color: var(--cor-texto-claro);
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.lightbox--aberto .lightbox__dica {
+  animation: prog-dica-sumir 400ms ease 3s forwards;
+}
+
+@keyframes prog-dica-sumir {
+  to {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lightbox--aberto .lightbox__dica {
+    animation: none;
+    opacity: 0.85;
   }
 }
