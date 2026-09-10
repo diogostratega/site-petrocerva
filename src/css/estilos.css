@@ -25,7 +25,10 @@
   --cor-superficie: var(--cor-texto-claro);
   --cor-texto-titulo: var(--cor-verde-profundo);
   --cor-texto-acento-verde: var(--cor-verde-marca);
-  --cor-texto-sobre-destaque: var(--cor-texto-escuro);
+  /* Texto sobre botões dourados: precisa ser sempre escuro, nos dois temas.
+     Fixo de propósito — não pode acompanhar --cor-texto-escuro, que fica claro
+     no modo escuro (era isso que deixava o CTA ilegível no amarelo). */
+  --cor-texto-sobre-destaque: var(--cor-verde-profundo);
 
   --fonte-principal: "Ubuntu", sans-serif;
   --largura-maxima-conteudo: 70rem;
@@ -65,7 +68,8 @@
   --cor-texto-titulo: var(--cor-texto-claro);
   --cor-texto-acento-verde: var(--cor-verde-vibrante);
 
-  /* --cor-texto-sobre-destaque não muda: continua escuro sobre botões dourados. */
+  /* --cor-texto-sobre-destaque não é redefinido aqui: é fixo (verde profundo)
+     para o texto continuar escuro e legível sobre os botões dourados. */
   /* --cor-verde-profundo, --cor-verde-marca e --cor-dourado-marca não mudam:
      seções e botões verdes/dourados continuam com a mesma força visual nos
      dois temas. */
@@ -87,10 +91,6 @@
 
 [data-theme="dark"] .experiencia__icone {
   color: var(--cor-dourado-marca);
-}
-
-[data-theme="dark"] .localizacao__botao--whatsapp {
-  color: var(--cor-verde-profundo);
 }
 
 /* Transição suave entre os temas, só nas propriedades de cor (leve para o
@@ -432,6 +432,46 @@ h3 {
   background-color: var(--cor-verde-profundo);
   color: var(--cor-texto-claro);
   overflow: hidden;
+}
+
+/* Fundo do hero: o verde chapado ganha profundidade com dois brilhos radiais
+   (dourado no alto, verde embaixo), o motivo de raios da logo e um grão fino.
+   Tudo decorativo e atrás do conteúdo (z-index: 0 vs. 1 do __conteudo). */
+.motivo-raios {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(55rem 38rem at 88% -12%, rgb(235 176 63 / 16%), transparent 62%),
+    radial-gradient(48rem 48rem at -12% 114%, rgb(8 160 105 / 22%), transparent 58%);
+}
+
+.motivo-raios::before {
+  content: "";
+  position: absolute;
+  top: -45%;
+  right: -25%;
+  width: 60rem;
+  height: 60rem;
+  background: repeating-conic-gradient(
+    from 205deg at 50% 50%,
+    rgb(245 179 53 / 9%) 0deg 3.5deg,
+    transparent 3.5deg 21deg
+  );
+  border-radius: 50%;
+  -webkit-mask-image: radial-gradient(closest-side, #000 35%, transparent 100%);
+  mask-image: radial-gradient(closest-side, #000 35%, transparent 100%);
+}
+
+.motivo-raios::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='r'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23r)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  mix-blend-mode: overlay;
 }
 
 .hero__conteudo {
