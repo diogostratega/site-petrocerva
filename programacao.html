@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Programação da Semana | Petrocerva Gastrobar</title>
+  <meta name="description"
+    content="Programação de música ao vivo do fim de semana no Petrocerva Gastrobar, Centro de Paulista, PE.">
+  <meta name="robots" content="index, follow">
+
+  <link rel="icon" type="image/png" href="src/img/logo-petrocerva.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="src/css/reset.css">
+  <link rel="stylesheet" href="src/css/estilos.css">
+  <link rel="stylesheet" href="src/css/programacao.css">
+</head>
+
+<body>
+
+  <div class="prog" data-carrossel>
+
+    <header class="prog__topo">
+      <a class="prog__logo-link" href="index.html" aria-label="Petrocerva Gastrobar, ir para o site">
+        <picture>
+          <source srcset="src/img/logo-petrocerva.webp" type="image/webp">
+          <img class="prog__logo" src="src/img/logo-petrocerva.png" alt="" width="32" height="28">
+        </picture>
+      </a>
+
+      <h1 class="prog__titulo">Programação da semana</h1>
+    </header>
+
+    <div class="prog__palco">
+      <div class="carrossel">
+        <div class="carrossel__viewport" id="carrossel-viewport">
+          <ul class="carrossel__trilho">
+
+            <li class="carrossel__slide" data-dia="sexta" role="group" aria-roledescription="slide"
+              aria-label="1 de 3" aria-hidden="false">
+              <div class="slide__figura">
+                <img src="src/img/programacao-sex.webp"
+                  alt="Cartaz do Muído de Vaquejada com Édson Vaqueiro, sexta-feira 11 de setembro às 20h30 no Petrocerva Gastrobar"
+                  width="1080" height="1440" draggable="false" fetchpriority="high" decoding="async">
+              </div>
+              <div class="slide__info">
+                <p class="slide__dia">Sexta-feira · 11 de setembro</p>
+                <p class="slide__evento">Muído de Vaquejada</p>
+                <p class="slide__artista">Édson Vaqueiro</p>
+                <p class="slide__horario">20h30</p>
+                <a class="slide__cta"
+                  href="https://wa.me/5581981782875?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20Mu%C3%ADdo%20de%20Vaquejada%20com%20%C3%89dson%20Vaqueiro%20na%20Petrocerva."
+                  target="_blank" rel="noopener noreferrer">
+                  <svg class="slide__cta-icone" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true">
+                    <path
+                      d="M16 3C9 3 3.3 8.6 3.3 15.5c0 2.6.8 5 2.1 7L3 29l6.7-2.3c1.9 1 4.1 1.6 6.3 1.6 7 0 12.7-5.6 12.7-12.5S23 3 16 3Zm0 22.7c-2 0-3.9-.5-5.5-1.5l-.4-.2-4 1.3 1.3-3.9-.3-.4a10.2 10.2 0 0 1-1.6-5.5c0-5.7 4.7-10.3 10.5-10.3s10.5 4.6 10.5 10.3S21.8 25.7 16 25.7Z"
+                      fill="currentColor" />
+                    <path
+                      d="M21.4 18.3c-.3-.1-1.7-.9-2-1s-.5-.1-.6.1-.6.9-.7 1-.3.1-.6 0a8.5 8.5 0 0 1-2.5-1.5 9.2 9.2 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.6l.4-.5.3-.4v-.4c0-.1-.6-1.5-.8-2s-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3s-.9.9-.9 2.2.9 2.6 1.1 2.7c.1.2 1.9 3 4.7 4.1.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.3s.2-1.2.2-1.3-.2-.2-.5-.3Z"
+                      fill="currentColor" />
+                  </svg>
+                  <span>Mais informações</span>
+                </a>
+              </div>
+            </li>
+
+            <li class="carrossel__slide" data-dia="sabado" role="group" aria-roledescription="slide"
+              aria-label="2 de 3" aria-hidden="true">
+              <div class="slide__figura">
+                <img src="src/img/programacao-sab.webp"
+                  alt="Cartaz do Arrocha Vanelly com Vanelly Alves, sábado 12 de setembro às 20h30 no Petrocerva Gastrobar"
+                  width="1080" height="1440" draggable="false" loading="lazy" decoding="async">
+              </div>
+              <div class="slide__info">
+                <p class="slide__dia">Sábado · 12 de setembro</p>
+                <p class="slide__evento">Arrocha Vanelly</p>
+                <p class="slide__artista">Vanelly Alves</p>
+                <p class="slide__horario">20h30</p>
+                <a class="slide__cta"
+                  href="https://wa.me/5581981782875?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20Arrocha%20Vanelly%20com%20Vanelly%20Alves%20na%20Petrocerva."
+                  target="_blank" rel="noopener noreferrer">
+                  <svg class="slide__cta-icone" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true">
+                    <path
+                      d="M16 3C9 3 3.3 8.6 3.3 15.5c0 2.6.8 5 2.1 7L3 29l6.7-2.3c1.9 1 4.1 1.6 6.3 1.6 7 0 12.7-5.6 12.7-12.5S23 3 16 3Zm0 22.7c-2 0-3.9-.5-5.5-1.5l-.4-.2-4 1.3 1.3-3.9-.3-.4a10.2 10.2 0 0 1-1.6-5.5c0-5.7 4.7-10.3 10.5-10.3s10.5 4.6 10.5 10.3S21.8 25.7 16 25.7Z"
+                      fill="currentColor" />
+                    <path
+                      d="M21.4 18.3c-.3-.1-1.7-.9-2-1s-.5-.1-.6.1-.6.9-.7 1-.3.1-.6 0a8.5 8.5 0 0 1-2.5-1.5 9.2 9.2 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.6l.4-.5.3-.4v-.4c0-.1-.6-1.5-.8-2s-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3s-.9.9-.9 2.2.9 2.6 1.1 2.7c.1.2 1.9 3 4.7 4.1.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.3s.2-1.2.2-1.3-.2-.2-.5-.3Z"
+                      fill="currentColor" />
+                  </svg>
+                  <span>Mais informações</span>
+                </a>
+              </div>
+            </li>
+
+            <li class="carrossel__slide" data-dia="domingo" role="group" aria-roledescription="slide"
+              aria-label="3 de 3" aria-hidden="true">
+              <div class="slide__figura">
+                <img src="src/img/programacao-dom.webp"
+                  alt="Cartaz do Pagodeou Petrocerva com o grupo Samba pra Boteco, domingo 13 de setembro às 18h30 no Petrocerva Gastrobar"
+                  width="1080" height="1440" draggable="false" loading="lazy" decoding="async">
+              </div>
+              <div class="slide__info">
+                <p class="slide__dia">Domingo · 13 de setembro</p>
+                <p class="slide__evento">Pagodeou Petrocerva</p>
+                <p class="slide__artista">Samba pra Boteco</p>
+                <p class="slide__horario">18h30</p>
+                <a class="slide__cta"
+                  href="https://wa.me/5581981782875?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20Pagodeou%20Petrocerva%20com%20Samba%20pra%20Boteco%20na%20Petrocerva."
+                  target="_blank" rel="noopener noreferrer">
+                  <svg class="slide__cta-icone" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true">
+                    <path
+                      d="M16 3C9 3 3.3 8.6 3.3 15.5c0 2.6.8 5 2.1 7L3 29l6.7-2.3c1.9 1 4.1 1.6 6.3 1.6 7 0 12.7-5.6 12.7-12.5S23 3 16 3Zm0 22.7c-2 0-3.9-.5-5.5-1.5l-.4-.2-4 1.3 1.3-3.9-.3-.4a10.2 10.2 0 0 1-1.6-5.5c0-5.7 4.7-10.3 10.5-10.3s10.5 4.6 10.5 10.3S21.8 25.7 16 25.7Z"
+                      fill="currentColor" />
+                    <path
+                      d="M21.4 18.3c-.3-.1-1.7-.9-2-1s-.5-.1-.6.1-.6.9-.7 1-.3.1-.6 0a8.5 8.5 0 0 1-2.5-1.5 9.2 9.2 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.6l.4-.5.3-.4v-.4c0-.1-.6-1.5-.8-2s-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3s-.9.9-.9 2.2.9 2.6 1.1 2.7c.1.2 1.9 3 4.7 4.1.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.3s.2-1.2.2-1.3-.2-.2-.5-.3Z"
+                      fill="currentColor" />
+                  </svg>
+                  <span>Mais informações</span>
+                </a>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+
+        <button type="button" class="carrossel__seta carrossel__seta--anterior" data-anterior
+          aria-label="Dia anterior" aria-controls="carrossel-viewport">
+          <svg width="12" height="18" viewBox="0 0 10 16" aria-hidden="true">
+            <path d="M9 1 1.5 8 9 15" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+        <button type="button" class="carrossel__seta carrossel__seta--proxima" data-proximo
+          aria-label="Próximo dia" aria-controls="carrossel-viewport">
+          <svg width="12" height="18" viewBox="0 0 10 16" aria-hidden="true">
+            <path d="M1 1 8.5 8 1 15" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="prog__controles" role="group" aria-label="Escolher o dia">
+      <button type="button" class="carrossel__tab carrossel__tab--ativa" data-dia="sexta" aria-pressed="true">Sexta</button>
+      <button type="button" class="carrossel__tab" data-dia="sabado" aria-pressed="false">Sábado</button>
+      <button type="button" class="carrossel__tab" data-dia="domingo" aria-pressed="false">Domingo</button>
+    </div>
+
+    <p class="visualmente-oculto" data-anuncio role="status" aria-live="polite"></p>
+
+  </div>
+
+  <script src="src/js/programacao.js" defer></script>
+</body>
+
+</html>

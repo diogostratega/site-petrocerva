@@ -1,0 +1,291 @@
+/* ===================================================
+   PROGRAMACAO.CSS
+   Página de tela cheia para QR Code em banner de fachada.
+   Sem scroll vertical: tudo cabe em uma tela (100svh).
+   Reaproveita os tokens de estilos.css, sem paleta nova.
+   =================================================== */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+  overscroll-behavior: none;
+  background-color: var(--cor-creme);
+}
+
+.prog {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+
+/* ---- Topo compacto: logo (volta ao site), título e tema ---- */
+.prog__topo {
+  display: flex;
+  align-items: center;
+  gap: var(--espacamento-sm);
+  flex-shrink: 0;
+  padding: 0.4rem var(--espacamento-md);
+  background-color: var(--cor-creme);
+  border-bottom: 1px solid var(--cor-borda-suave);
+}
+
+.prog__logo-link {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.prog__logo {
+  width: 2rem;
+  height: 1.75rem;
+  object-fit: contain;
+}
+
+.prog__titulo {
+  flex: 1;
+  min-width: 0;
+  font-size: clamp(0.95rem, 3.6vw, 1.15rem);
+  font-weight: 700;
+  color: var(--cor-texto-titulo);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---- Palco: área do carrossel, fundo claro. O cartaz ganha sombra
+        para não flutuar sobre o creme. ---- */
+.prog__palco {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  background-color: var(--cor-creme);
+}
+
+.carrossel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.carrossel__viewport {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  touch-action: pan-y;
+  cursor: grab;
+}
+
+.carrossel__viewport:active {
+  cursor: grabbing;
+}
+
+.carrossel__trilho {
+  display: flex;
+  height: 100%;
+  transition: transform var(--transicao-entrada);
+}
+
+.carrossel__slide {
+  flex: 0 0 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.slide__figura {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  padding: var(--espacamento-md);
+}
+
+.slide__figura img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: var(--raio-borda-sm);
+  box-shadow: var(--sombra-card);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.slide__info {
+  flex-shrink: 0;
+  display: grid;
+  gap: 0.35rem;
+  padding: var(--espacamento-sm) var(--espacamento-md) var(--espacamento-md);
+  background-color: var(--cor-creme);
+  border-top: 1px solid var(--cor-borda-suave);
+  color: var(--cor-texto-escuro);
+  text-align: center;
+}
+
+.slide__dia {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--cor-texto-eyebrow);
+}
+
+.slide__evento {
+  font-size: clamp(1.35rem, 5.5vw, 1.85rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--cor-texto-titulo);
+}
+
+.slide__artista {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--cor-texto-escuro);
+}
+
+.slide__horario {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--cor-texto-escuro);
+}
+
+.slide__horario::before {
+  content: "";
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-right: 0.4rem;
+  border-radius: 50%;
+  background-color: var(--cor-dourado-escuro);
+  vertical-align: middle;
+}
+
+.slide__cta {
+  justify-self: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  margin-top: 0.15rem;
+  padding: 0.6rem var(--espacamento-xl);
+  background-color: var(--cor-verde-marca);
+  color: var(--cor-texto-claro);
+  font-weight: 700;
+  border-radius: var(--raio-borda-sm);
+  transition: transform var(--transicao-rapida);
+}
+
+.slide__cta-icone {
+  flex-shrink: 0;
+}
+
+.slide__cta:active {
+  transform: translateY(1px);
+}
+
+/* ---- Setas sobre o cartaz ---- */
+.carrossel__seta {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background-color: var(--cor-verde-profundo);
+  color: var(--cor-texto-claro);
+  box-shadow: var(--sombra-card);
+  z-index: 2;
+  transition: transform var(--transicao-rapida);
+}
+
+.carrossel__seta:active {
+  transform: translateY(-50%) scale(0.94);
+}
+
+.carrossel__seta--anterior {
+  left: var(--espacamento-sm);
+}
+
+.carrossel__seta--proxima {
+  right: var(--espacamento-sm);
+}
+
+/* ---- Controles: abas de dia, alvos de toque grandes ---- */
+.prog__controles {
+  display: flex;
+  gap: 0.375rem;
+  flex-shrink: 0;
+  padding: var(--espacamento-sm) var(--espacamento-md);
+  background-color: var(--cor-creme);
+  border-top: 1px solid var(--cor-borda-suave);
+}
+
+.carrossel__tab {
+  flex: 1;
+  min-width: 0;
+  min-height: 3.25rem;
+  padding: 0.4rem 0.25rem;
+  border: 2px solid var(--cor-borda-suave);
+  border-radius: var(--raio-borda-sm);
+  background-color: transparent;
+  color: var(--cor-texto-escuro);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  transition: background-color var(--transicao-rapida), border-color var(--transicao-rapida),
+    color var(--transicao-rapida);
+}
+
+.carrossel__tab--ativa {
+  background-color: var(--cor-verde-profundo);
+  border-color: var(--cor-dourado-marca);
+  color: var(--cor-texto-claro);
+}
+
+.carrossel__tab:active {
+  transform: translateY(1px);
+}
+
+/* ---- Telas baixas / paisagem: cartaz e informações lado a lado ---- */
+@media (max-height: 34rem), (orientation: landscape) {
+  .carrossel__slide {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .slide__figura {
+    flex: 0 0 44%;
+  }
+
+  .slide__info {
+    flex: 1;
+    align-content: center;
+    text-align: left;
+  }
+
+  .slide__cta {
+    justify-self: start;
+  }
+
+  .carrossel__seta {
+    top: 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carrossel__trilho {
+    transition: none;
+  }
+}
