@@ -140,6 +140,17 @@
 
     <!-- HERO -->
     <section class="hero" aria-labelledby="titulo-hero">
+      <!-- Fundo em tela cheia: reaproveita os mesmos flyers da programação (não
+           são novos assets). O JS ativa a imagem do dia selecionado no carrossel;
+           sem JS, fica a de sexta. Decorativo — a info do evento está no texto ao lado. -->
+      <div class="hero__fundo" aria-hidden="true">
+        <img class="hero__fundo-imagem hero__fundo-imagem--ativa" src="src/img/programacao-sex.webp" alt=""
+          data-dia="sexta" decoding="async">
+        <img class="hero__fundo-imagem" src="src/img/programacao-sab.webp" alt="" data-dia="sabado" loading="lazy"
+          decoding="async">
+        <img class="hero__fundo-imagem" src="src/img/programacao-dom.webp" alt="" data-dia="domingo" loading="lazy"
+          decoding="async">
+      </div>
       <div class="motivo-raios" aria-hidden="true"></div>
       <div class="hero__conteudo">
         <div class="hero__introducao">

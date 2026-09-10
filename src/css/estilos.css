@@ -474,6 +474,55 @@ h3 {
   mix-blend-mode: overlay;
 }
 
+/* Fundo em tela cheia do hero: o flyer do dia ativo, borrado e escurecido,
+   por baixo do conteúdo. Reaproveita os assets da programação. */
+.hero__fundo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero__fundo-imagem {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Escala > 1 joga a franja transparente do blur para fora do overflow. */
+  transform: scale(1.18);
+  filter: blur(12px);
+  opacity: 0;
+  transition: opacity 500ms ease;
+}
+
+.hero__fundo-imagem--ativa {
+  opacity: 1;
+}
+
+/* Véu escuro (verde-profundo da marca) sobre a foto: garante contraste AA do
+   texto branco. Mais denso do lado do texto — topo no mobile, esquerda no
+   desktop — e mais leve na direita, onde só entra o card do carrossel. */
+.hero__fundo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    rgb(7 61 43 / 93%) 0%,
+    rgb(7 61 43 / 82%) 42%,
+    rgb(7 61 43 / 72%) 100%
+  );
+}
+
+/* Sem fade para quem pede menos movimento: a troca é instantânea. */
+@media (prefers-reduced-motion: reduce) {
+  .hero__fundo-imagem {
+    transition: none;
+  }
+}
+
 .hero__conteudo {
   position: relative;
   z-index: 1;

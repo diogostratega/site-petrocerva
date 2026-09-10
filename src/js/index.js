@@ -250,6 +250,9 @@ function inicializarCarrosselProgramacao() {
   );
   const barraDeProgresso = document.getElementById("barra-progresso-autoplay");
   const anuncioDoCarrossel = document.getElementById("anuncio-carrossel");
+  const imagensFundoHero = Array.from(
+    document.querySelectorAll(".hero__fundo-imagem")
+  );
 
   if (!carrossel || !viewport || !trilhoProgramacao || slidesDaProgramacao.length === 0) {
     return;
@@ -307,6 +310,16 @@ function inicializarCarrosselProgramacao() {
       const ehODiaAtivo = botao.dataset.dia === diaDoSlideAtivo;
       botao.classList.toggle("carrossel-programacao__botao-dia--ativo", ehODiaAtivo);
       botao.setAttribute("aria-selected", ehODiaAtivo ? "true" : "false");
+    });
+
+    sincronizarFundoDoHero(diaDoSlideAtivo);
+  }
+
+  // Mantém o fundo do hero no mesmo evento do carrossel. O crossfade é só CSS
+  // (transição de opacidade), então prefers-reduced-motion já troca sem fade.
+  function sincronizarFundoDoHero(dia) {
+    imagensFundoHero.forEach((imagem) => {
+      imagem.classList.toggle("hero__fundo-imagem--ativa", imagem.dataset.dia === dia);
     });
   }
 
