@@ -915,7 +915,9 @@ h3 {
    =================================================== */
 
 .experiencia {
-  padding-block: var(--espacamento-3xl);
+  /* Base um pouco maior que o topo: ajuste óptico do ritmo vertical. */
+  padding-top: var(--espacamento-3xl);
+  padding-bottom: calc(var(--espacamento-3xl) + var(--espacamento-lg));
   background-color: var(--cor-creme);
 }
 
@@ -956,25 +958,30 @@ h3 {
   margin-bottom: var(--espacamento-xl);
 }
 
+/* Lista editorial, não grade de cards: sem fundo nem moldura, só um filete
+   entre os itens. O primeiro vira destaque horizontal no desktop
+   (ver responsivo.css). */
 .experiencia__grade {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--espacamento-md);
+  gap: 0;
 }
 
 .experiencia__item {
   display: block;
-  padding: var(--espacamento-lg);
-  background-color: var(--cor-superficie);
-  border: 1px solid var(--cor-borda-suave);
-  border-radius: var(--raio-borda-md);
+  padding: var(--espacamento-lg) 0;
+  border-top: 1px solid var(--cor-borda-suave);
   text-decoration: none;
-  transition: transform var(--transicao-rapida), border-color var(--transicao-rapida);
+  transition: border-color var(--transicao-rapida);
+}
+
+.experiencia__item:first-child {
+  border-top: 0;
+  padding-top: 0;
 }
 
 .experiencia__item:hover,
 .experiencia__item:focus-visible {
-  transform: translateY(-2px);
   border-color: var(--cor-dourado-marca);
 }
 
@@ -988,6 +995,13 @@ h3 {
   background-color: var(--cor-creme-suave);
   color: var(--cor-texto-acento-verde);
   margin-bottom: var(--espacamento-md);
+  transition: background-color var(--transicao-rapida), color var(--transicao-rapida);
+}
+
+.experiencia__item:hover .experiencia__icone,
+.experiencia__item:focus-visible .experiencia__icone {
+  background-color: var(--cor-dourado-marca);
+  color: var(--cor-verde-profundo);
 }
 
 .experiencia__item-titulo {
@@ -1125,10 +1139,12 @@ h3 {
   background-color: var(--cor-creme);
 }
 
+/* Parede de citações: no desktop vira multi-coluna com alturas naturais
+   (ver responsivo.css), em vez de três torres de mesma altura. */
 .depoimentos__grade {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--espacamento-md);
+  gap: var(--espacamento-xl);
 }
 
 .depoimentos__resumo {
@@ -1178,10 +1194,20 @@ h3 {
 }
 
 .depoimentos__item {
-  padding: var(--espacamento-lg);
-  border-radius: var(--raio-borda-md);
-  background-color: var(--cor-superficie);
-  border-left: 0.25rem solid var(--cor-dourado-marca);
+  position: relative;
+  padding-left: var(--espacamento-xl);
+}
+
+/* Aspas penduradas na margem, no lugar da barra dourada / do card. */
+.depoimentos__item::before {
+  content: "\201C";
+  position: absolute;
+  left: -0.15rem;
+  top: -0.5rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 2.75rem;
+  line-height: 1;
+  color: var(--cor-dourado-marca);
 }
 
 .depoimentos__cabecalho {

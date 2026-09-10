@@ -68,16 +68,58 @@
     padding-inline: var(--espacamento-xl);
   }
 
+  /* 1º item = destaque na linha inteira (ícone e tipos maiores, texto à
+     esquerda); os outros três formam uma fileira abaixo. Quebra o padrão
+     de quatro cards iguais. */
   .experiencia__grade {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: var(--espacamento-xl);
+  }
+
+  .experiencia__item:first-child {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 16rem 1fr;
+    grid-template-areas:
+      "icone  texto"
+      "titulo texto";
+    column-gap: var(--espacamento-2xl);
+    align-items: start;
+    padding-bottom: var(--espacamento-xl);
+  }
+
+  .experiencia__item:first-child .experiencia__icone {
+    grid-area: icone;
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .experiencia__item:first-child .experiencia__item-titulo {
+    grid-area: titulo;
+    font-size: 1.5rem;
+  }
+
+  .experiencia__item:first-child .experiencia__item-texto {
+    grid-area: texto;
+    align-self: center;
+    font-size: 1.0625rem;
+    max-width: 42ch;
   }
 
   .galeria__grade {
     grid-template-columns: repeat(4, 1fr);
   }
 
+  /* Alturas naturais em vez de três torres iguais. */
   .depoimentos__grade {
-    grid-template-columns: repeat(3, 1fr);
+    display: block;
+    column-count: 2;
+    column-gap: var(--espacamento-2xl);
+  }
+
+  .depoimentos__item {
+    break-inside: avoid;
+    margin-bottom: var(--espacamento-xl);
   }
 
   .localizacao__grade {
@@ -151,10 +193,6 @@
     justify-content: center;
   }
 
-  .experiencia__grade {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
   .galeria__grade {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -181,9 +219,5 @@
   .carrossel-programacao__moldura {
     max-width: 42rem;
     margin-inline: auto;
-  }
-
-  .experiencia__item {
-    padding: var(--espacamento-xl);
   }
 }
