@@ -322,6 +322,10 @@ body {
     text-align: left;
   }
 
+  .slide__meta {
+    justify-content: flex-start;
+  }
+
   .slide__cta {
     justify-self: start;
   }
@@ -334,6 +338,100 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .carrossel__trilho {
     transition: none;
+  }
+}
+
+/* ---- Desktop: a página nasceu para caber num celular (QR Code de fachada);
+        aqui ela vira um cartão centralizado do tamanho de um tablet, em vez
+        de esticar o cartaz e o texto pela tela inteira do monitor. ---- */
+@media (min-width: 64rem) {
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 50% -10%, var(--cor-verde-profundo-suave), var(--cor-verde-profundo) 70%);
+  }
+
+  .prog {
+    width: 100%;
+    max-width: 56rem;
+    height: min(100svh, 44rem);
+    margin: auto;
+    border-radius: var(--raio-borda-md);
+    box-shadow: 0 2rem 4rem rgb(0 0 0 / 35%);
+  }
+
+  .prog__topo {
+    padding: var(--espacamento-md) var(--espacamento-lg);
+  }
+
+  .prog__logo {
+    width: 2.5rem;
+    height: 2.1875rem;
+  }
+
+  .prog__titulo {
+    font-size: 1.25rem;
+  }
+
+  .slide__figura {
+    flex: 0 0 45%;
+    padding: var(--espacamento-xl);
+    cursor: zoom-in;
+  }
+
+  .slide__info {
+    max-width: 24rem;
+    margin-inline: auto;
+    padding: var(--espacamento-xl) var(--espacamento-lg);
+  }
+
+  .slide__evento {
+    font-size: 2rem;
+  }
+
+  .slide__artista {
+    font-size: 1.125rem;
+  }
+
+  .slide__cta:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-card);
+  }
+
+  .carrossel__seta {
+    left: auto;
+    right: auto;
+  }
+
+  .carrossel__seta--anterior {
+    left: var(--espacamento-md);
+  }
+
+  .carrossel__seta--proxima {
+    right: var(--espacamento-md);
+  }
+
+  .carrossel__seta:hover {
+    transform: translateY(-50%) scale(1.08);
+  }
+
+  .prog__controles {
+    justify-content: center;
+    padding-block: var(--espacamento-md);
+  }
+
+  .carrossel__tab {
+    flex: 0 0 auto;
+    min-width: 8rem;
+    min-height: 2.75rem;
+    padding-inline: var(--espacamento-lg);
+  }
+
+  .carrossel__tab:hover:not(.carrossel__tab--ativa) {
+    border-color: var(--cor-verde-marca);
+    background-color: var(--cor-creme-suave);
+    color: var(--cor-texto-titulo);
   }
 }
 
