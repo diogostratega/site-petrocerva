@@ -312,6 +312,24 @@
   font-weight: 500;
 }
 
+.cardapio-rodape__programacao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: var(--espacamento-sm) var(--espacamento-lg);
+  background-color: var(--cor-dourado-marca);
+  color: var(--cor-verde-profundo-suave);
+  border-radius: var(--raio-borda-sm);
+  font-weight: 700;
+  text-align: center;
+  transition: transform var(--transicao-rapida);
+}
+
+.cardapio-rodape__programacao:active {
+  transform: translateY(1px);
+}
+
 .cardapio-rodape__voltar {
   display: inline-flex;
   align-items: center;

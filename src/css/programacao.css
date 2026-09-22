@@ -57,6 +57,23 @@ body {
   text-overflow: ellipsis;
 }
 
+.prog__botao-cardapio {
+  flex-shrink: 0;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background-color: var(--cor-verde-marca);
+  color: var(--cor-texto-claro);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  transition: transform var(--transicao-rapida);
+}
+
+.prog__botao-cardapio:hover {
+  transform: translateY(-1px);
+}
+
 /* ---- Palco: área do carrossel, fundo claro. O cartaz ganha sombra
         para não flutuar sobre o creme. ---- */
 .prog__palco {
@@ -151,11 +168,17 @@ body {
 }
 
 .slide__dia {
+  display: inline-flex;
+  align-items: center;
+  justify-self: center;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
   font-size: 0.8125rem;
   font-weight: 700;
   letter-spacing: 0.03em;
   text-transform: uppercase;
   color: var(--cor-dourado-marca);
+  background-color: var(--cor-verde-marca);
 }
 
 .slide__evento {
@@ -322,6 +345,10 @@ body {
     text-align: left;
   }
 
+  .slide__dia {
+    justify-self: start;
+  }
+
   .slide__meta {
     justify-content: flex-start;
   }
@@ -372,6 +399,11 @@ body {
 
   .prog__titulo {
     font-size: 1.25rem;
+  }
+
+  .prog__botao-cardapio {
+    padding: 0.5rem 1.1rem;
+    font-size: 0.875rem;
   }
 
   .slide__figura {
