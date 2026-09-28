@@ -177,7 +177,7 @@ body {
   font-weight: 700;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  color: var(--cor-dourado-marca);
+  color: var(--cor-texto-claro);
   background-color: var(--cor-verde-marca);
 }
 
