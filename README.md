@@ -12,16 +12,38 @@ O projeto surgiu da necessidade de reunir a programação musical, o cardápio e
 
 O site apresenta uma programação semanal interativa, visualização ampliada dos eventos e animações que acompanham a navegação.
 
+Clique em qualquer GIF para acessar o site.
+
+### Desktop
+
 <p align="center">
-  <img
-    src="site-petrocerva-desktop.gif"
-    alt="Demonstração da programação interativa, visualização de eventos e animações de scroll do Petrocerva"
-    width="900"
-  >
+  <a href="https://www.petrocerva.com.br/">
+    <img
+      src="src/gif/site-petrocerva-desktop.gif"
+      alt="Demonstração desktop da programação interativa, visualização de eventos e animações de scroll do Petrocerva"
+      width="900"
+    >
+  </a>
 </p>
 
 <p align="center">
   <sub>Navegação desktop - programação de eventos e interações da página.</sub>
+</p>
+
+### Mobile
+
+<p align="center">
+  <a href="https://www.petrocerva.com.br/">
+    <img
+      src="src/gif/site-petrocerva-mobile.gif"
+      alt="Demonstração mobile da navegação e das interações do Petrocerva"
+      width="360"
+    >
+  </a>
+</p>
+
+<p align="center">
+  <sub>Navegação mobile - experiência responsiva em dispositivos móveis.</sub>
 </p>
 
 
