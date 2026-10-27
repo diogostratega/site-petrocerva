@@ -21,7 +21,7 @@ O site apresenta uma programação semanal interativa, visualização ampliada d
 </p>
 
 <p align="center">
-  <sub>Navegação desktop — programação de eventos e interações da página.</sub>
+  <sub>Navegação desktop - programação de eventos e interações da página.</sub>
 </p>
 
 
