@@ -14,7 +14,7 @@ O site apresenta uma programação semanal interativa, visualização ampliada d
 
 <p align="center">
   <img
-    src="docs/gifs/site-petrocerva-desktop.gif"
+    src="site-petrocerva-desktop.gif"
     alt="Demonstração da programação interativa, visualização de eventos e animações de scroll do Petrocerva"
     width="900"
   >
