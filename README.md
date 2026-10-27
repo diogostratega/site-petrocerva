@@ -7,6 +7,24 @@ O projeto surgiu da necessidade de reunir a programação musical, o cardápio e
 
 **[Acessar o site](https://www.petrocerva.com.br/)**
 
+
+## Demonstração
+
+O site apresenta uma programação semanal interativa, visualização ampliada dos eventos e animações que acompanham a navegação.
+
+<p align="center">
+  <img
+    src="docs/gifs/site-petrocerva-desktop.gif"
+    alt="Demonstração da programação interativa, visualização de eventos e animações de scroll do Petrocerva"
+    width="900"
+  >
+</p>
+
+<p align="center">
+  <sub>Navegação desktop — programação de eventos e interações da página.</sub>
+</p>
+
+
 ## Funcionalidades
 
 - Programação semanal de música ao vivo
