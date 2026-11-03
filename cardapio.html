@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="src/js/tema.js"></script>
 
   <title>Cardápio | Petrocerva Gastrobar</title>
   <meta name="description"
@@ -47,6 +49,19 @@
         <path d="M10 20v-5h4v5" />
       </svg>
     </a>
+
+      <button type="button" class="cabecalho__botao-tema cardapio-hero__botao-tema" id="botao-tema" aria-label="Ativar modo escuro">
+        <svg class="icone-lua" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden>
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
+        </svg>
+        <svg class="icone-sol" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" />
+          <path
+            d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+        </svg>
+      </button>
 
     <div class="cardapio-hero__marca">
       <picture>

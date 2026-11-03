@@ -3,7 +3,7 @@
    Página do cardápio para acesso via QR Code na mesa.
    Hero com a logo sobre uma foto da casa, faixa "Cardápio" e as categorias
    em tópicos que abrem e fecham (Pratos, Porções, Drinks, Sobremesas).
-   Apenas tema claro. Reaproveita os tokens de estilos.css, sem paleta nova.
+   Temas claro e escuro com os mesmos tokens de estilos.css.
    =================================================== */
 
 .pagina-cardapio {
@@ -57,10 +57,23 @@
   width: 2.75rem;
   height: 2.75rem;
   border-radius: 50%;
-  background-color: rgb(255 248 231 / 92%);
-  color: var(--cor-verde-profundo);
+  background-color: var(--cor-creme);
+  color: var(--cor-texto-titulo);
   box-shadow: var(--sombra-card);
   transition: transform var(--transicao-rapida);
+}
+
+.cardapio-hero__botao-tema {
+  position: absolute;
+  top: var(--espacamento-sm);
+  right: var(--espacamento-sm);
+  z-index: 3;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background-color: var(--cor-creme);
+  color: var(--cor-texto-titulo);
+  box-shadow: var(--sombra-card);
 }
 
 .cardapio-hero__voltar:active {
