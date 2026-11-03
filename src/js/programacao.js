@@ -1,7 +1,6 @@
 // ===================================================
 // PETROCERVA GASTROBAR - programacao.js
-// Carrossel de tela cheia (QR em banner de fachada): arrastar para os
-// lados, setas, abas de dia. Sem autoplay, sem dependências.
+// Carrossel no formato do hero: arte inteira, abas, arraste e autoplay.
 // ===================================================
 
 document.documentElement.classList.add("js");
@@ -28,6 +27,39 @@ document.documentElement.classList.add("js");
   var xInicial = 0;
   var deslocamento = 0;
   var houveArraste = false;
+  var botaoAutomatico = raiz.querySelector("[data-autoplay]");
+  var progresso = raiz.querySelector("[data-progresso]");
+  var movimentoReduzido = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var pausado = movimentoReduzido.matches;
+  var temporizador = null;
+
+  function atualizarAutomatico() {
+    window.clearTimeout(temporizador);
+    progresso.classList.remove("prog__progresso--ativo");
+    botaoAutomatico.setAttribute("aria-pressed", pausado ? "true" : "false");
+    botaoAutomatico.setAttribute("aria-label", pausado ? "Retomar apresentação automática" : "Pausar apresentação automática");
+    botaoAutomatico.querySelector("[data-pausar]").toggleAttribute("hidden", pausado);
+    botaoAutomatico.querySelector("[data-retomar]").toggleAttribute("hidden", !pausado);
+    var dialogo = document.getElementById("prog-lightbox");
+    if (pausado || document.hidden || arrastando || (dialogo && dialogo.open) || viewport.contains(document.activeElement)) return;
+    void progresso.offsetWidth;
+    progresso.classList.add("prog__progresso--ativo");
+    temporizador = window.setTimeout(function () { mostrar(indice + 1, false); }, 6000);
+  }
+
+  botaoAutomatico.addEventListener("click", function () {
+    pausado = !pausado;
+    atualizarAutomatico();
+  });
+  document.addEventListener("visibilitychange", atualizarAutomatico);
+  movimentoReduzido.addEventListener("change", function (evento) {
+    pausado = evento.matches;
+    atualizarAutomatico();
+  });
+  viewport.addEventListener("focusin", atualizarAutomatico);
+  viewport.addEventListener("focusout", function () { window.setTimeout(atualizarAutomatico, 0); });
+  var destaque = document.getElementById("prog-lightbox");
+  if (destaque) new MutationObserver(atualizarAutomatico).observe(destaque, { attributes: true, attributeFilter: ["open"] });
 
   function indiceDoDia(dia) {
     for (var i = 0; i < total; i++) {
@@ -43,6 +75,7 @@ document.documentElement.classList.add("js");
     slides.forEach(function (slide, i) {
       var ativo = i === indice;
       slide.setAttribute("aria-hidden", ativo ? "false" : "true");
+      slide.inert = !ativo;
       var link = slide.querySelector("a");
       if (link) link.tabIndex = ativo ? 0 : -1;
     });
@@ -53,6 +86,10 @@ document.documentElement.classList.add("js");
       aba.classList.toggle("carrossel__tab--ativa", ativo);
       aba.setAttribute("aria-pressed", ativo ? "true" : "false");
     });
+
+    if (btnAnterior) btnAnterior.hidden = indice === 0;
+    if (btnProximo) btnProximo.hidden = indice === total - 1;
+    atualizarAutomatico();
 
     if (anunciar && anuncio) {
       anuncio.textContent = "Programação de " + (NOMES[dia] || dia);
@@ -90,6 +127,7 @@ document.documentElement.classList.add("js");
   // --- Arraste: toque e mouse ---
   function iniciar(x) {
     arrastando = true;
+    atualizarAutomatico();
     xInicial = x;
     deslocamento = 0;
     houveArraste = false;
@@ -141,7 +179,7 @@ document.documentElement.classList.add("js");
   viewport.addEventListener("touchcancel", finalizar);
 
   viewport.addEventListener("mousedown", function (evento) {
-    evento.preventDefault();
+    if (evento.button !== 0 || evento.target.closest("a")) return;
     iniciar(evento.clientX);
   });
 

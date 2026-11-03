@@ -1,27 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Aplica o tema salvo (ou a preferência do sistema) antes da 1ª pintura,
-       para a página não "piscar" no tema errado. -->
-  <script>
-    (function () {
-      try {
-        var salvo = localStorage.getItem("tema");
-        var preferemEscuro =
-          window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-        var tema = salvo === "dark" || salvo === "light" ? salvo : (preferemEscuro ? "dark" : "light");
-        if (tema === "dark") {
-          document.documentElement.setAttribute("data-theme", "dark");
-        }
-      } catch (erro) {
-        /* localStorage indisponível (ex.: navegação privada) — segue no tema claro padrão. */
-      }
-    })();
-  </script>
+  <script src="src/js/tema.js"></script>
 
   <title>Petrocerva Gastrobar | Música ao vivo em Paulista, PE</title>
   <meta name="description"
