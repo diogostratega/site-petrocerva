@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cardápio Happy Hour | Petrocerva Gastrobar</title>
+  <meta name="description" content="Confira os horários, preços e condições do Happy Hour do Petrocerva Gastrobar em Paulista, PE.">
+  <link rel="canonical" href="https://www.petrocerva.com.br/programacao/cardapio">
+  <link rel="icon" type="image/png" href="/src/img/logo-petrocerva.png">
+  <script src="/src/js/tema.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/css/reset.css">
+  <link rel="stylesheet" href="/src/css/estilos.css">
+  <link rel="stylesheet" href="/src/css/cardapio.css">
+  <style>
+    .happy-hour__titulo {
+      padding: var(--espacamento-md);
+      color: var(--cor-texto-titulo);
+    }
+
+    .happy-hour__horario {
+      flex-shrink: 0;
+      font-size: 1rem;
+      color: var(--cor-texto-escuro);
+    }
+
+    .happy-hour__condicoes {
+      display: grid;
+      gap: var(--espacamento-sm);
+      padding-inline-start: 1.25rem;
+      list-style: disc;
+      font-size: 1rem;
+      color: var(--cor-texto-escuro);
+    }
+  </style>
+</head>
+<body class="pagina-cardapio">
+  <a class="link-pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="cardapio-hero">
+    <div class="cardapio-hero__fundo" aria-hidden="true">
+      <img src="/src/img/cardapio-drink-01.jpg" alt="" width="800" height="800" fetchpriority="high" decoding="async">
+    </div>
+    <a class="cardapio-hero__voltar" href="/cardapio" aria-label="Voltar ao cardápio completo">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M19 12H5m7 7-7-7 7-7" />
+      </svg>
+    </a>
+    <button type="button" class="cabecalho__botao-tema cardapio-hero__botao-tema" id="botao-tema" aria-label="Ativar modo claro">
+      <svg class="icone-lua" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
+      </svg>
+      <svg class="icone-sol" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden>
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+      </svg>
+    </button>
+    <div class="cardapio-hero__marca">
+      <picture>
+        <source srcset="/src/img/logo-petrocerva.webp" type="image/webp">
+        <img class="cardapio-hero__logo" src="/src/img/logo-petrocerva.png" alt="Petrocerva Gastrobar" width="140" height="120">
+      </picture>
+    </div>
+  </header>
+
+  <div class="cardapio-faixa">
+    <h1 class="cardapio-faixa__titulo">Cardápio Happy Hour</h1>
+  </div>
+
+  <main class="cardapio-lista" id="conteudo">
+    <section class="categoria">
+      <h2 class="categoria__nome happy-hour__titulo">Horários do Happy Hour</h2>
+      <div class="categoria__corpo">
+        <ul class="itens">
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Segunda a quarta</span>
+              <span class="happy-hour__horario">17h às 21h</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Quinta a sábado</span>
+              <span class="happy-hour__horario">17h às 20h</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Domingo</span>
+              <span class="happy-hour__horario">17h às 18h30</span>
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="categoria">
+      <h2 class="categoria__nome happy-hour__titulo">Cervejas 600 ml</h2>
+      <div class="categoria__corpo">
+        <ul class="itens">
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Petra</span>
+              <span class="item__preco">R$ 8,90</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Budweiser</span>
+              <span class="item__preco">R$ 11,50</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Original</span>
+              <span class="item__preco">R$ 12,00</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Heineken</span>
+              <span class="item__preco">R$ 14,90</span>
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="categoria">
+      <h2 class="categoria__nome happy-hour__titulo">Destilados (doses)</h2>
+      <div class="categoria__corpo">
+        <ul class="itens">
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Black White</span>
+              <span class="item__preco">R$ 6,90</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Red Label</span>
+              <span class="item__preco">R$ 9,90</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Old Parr</span>
+              <span class="item__preco">R$ 12,90</span>
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="categoria">
+      <h2 class="categoria__nome happy-hour__titulo">Petiscos e entradas</h2>
+      <div class="categoria__corpo">
+        <ul class="itens">
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Caldinho de feijão</span>
+              <span class="item__preco">R$ 7,90</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Caldinho de feijoada</span>
+              <span class="item__preco">R$ 8,90</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Pão de alho tradicional</span>
+              <span class="item__preco">R$ 8,50</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Fritas simples</span>
+              <span class="item__preco">R$ 9,90</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Pastelzinho de carne</span>
+              <span class="item__preco">R$ 15,90</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Camarão alho e óleo</span>
+              <span class="item__preco">R$ 33,00</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Linguicinha (costela ou cordeiro)</span>
+              <span class="item__preco">R$ 27,90</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Calabresa com fritas</span>
+              <span class="item__preco">R$ 26,90</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Carne de sol</span>
+              <span class="item__preco">R$ 37,90</span>
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="categoria">
+      <h2 class="categoria__nome happy-hour__titulo">Drinks</h2>
+      <div class="categoria__corpo">
+        <ul class="itens">
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Caipirinha</span>
+              <span class="item__preco">R$ 7,90</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Caipirosca</span>
+              <span class="item__preco">R$ 9,90</span>
+            </p>
+          </li>
+          <li class="item">
+            <p class="item__linha">
+              <span class="item__nome">Gin tônica</span>
+              <span class="item__preco">R$ 15,90</span>
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="categoria">
+      <h2 class="categoria__nome happy-hour__titulo">Condições da promoção</h2>
+      <div class="categoria__corpo">
+        <ul class="happy-hour__condicoes">
+          <li>A promoção não se aplica a baldes de cerveja.</li>
+          <li>A promoção não é válida em feriados nem em vésperas de feriados.</li>
+          <li>Dias, horários e produtos podem mudar conforme a disponibilidade, sem aviso prévio.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="cardapio-rodape">
+    <p class="cardapio-rodape__couvert">Em dias de música ao vivo, cobramos couvert artístico (Lei nº 15.842 de 17/06/2016).</p>
+    <a class="cardapio-rodape__voltar" href="/cardapio">Voltar ao cardápio completo</a>
+  </footer>
+</body>
+</html>
