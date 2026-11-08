@@ -29,3 +29,20 @@ document.documentElement.classList.add("js");
     definir(botao.getAttribute("aria-expanded") === "true");
   });
 })();
+
+(function () {
+  var aviso = document.querySelector(".cardapio-aviso");
+  if (!aviso) return;
+
+  var navegacao = document.createElement("nav");
+  navegacao.className = "cardapio-aviso";
+  navegacao.setAttribute("aria-label", "Cardápios");
+
+  var link = document.createElement("a");
+  link.className = "cardapio-rodape__programacao";
+  link.href = "/programacao/cardapio";
+  link.textContent = "Ver cardápio do Happy Hour";
+
+  navegacao.appendChild(link);
+  aviso.before(navegacao);
+})();
